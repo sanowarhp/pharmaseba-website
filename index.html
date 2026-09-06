@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PharmaSeba — আপনার ফার্মেসির স্মার্ট সহকারী</title>
+<meta name="description" content="PharmaSeba — অফলাইনে চলা ফার্মেসি ম্যানেজমেন্ট সফটওয়্যার। বিলিং, স্টক, বাকি/খাতা ও রিপোর্ট, একবার কিনুন সারাজীবন ব্যবহার করুন।">
+<link rel="icon" type="image/png" href="logo-mark.png">
+<meta property="og:title" content="PharmaSeba — আপনার ফার্মেসির স্মার্ট সহকারী">
+<meta property="og:description" content="অফলাইনে চলা ফার্মেসি ম্যানেজমেন্ট সফটওয়্যার। একবার কিনুন, সারাজীবন ব্যবহার করুন।">
+<meta property="og:image" content="logo-mark.png">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green: #0E9F6E;
+    --green-dark: #065F46;
+    --green-deeper: #043D2E;
+    --blue: #2563EB;
+    --bg-tint: #F7FAF9;
+    --white: #FFFFFF;
+    --ink: #0F2A22;
+    --body: #3F5750;
+    --line: #E1EBE7;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Hind Siliguri', 'Manrope', sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.55;
+    font-size:16px;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+  .brand-font{font-family:'Manrope','Hind Siliguri',sans-serif;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:saturate(180%) blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px; max-width:1120px; margin:0 auto;
+  }
+  .nav-brand{display:flex; align-items:center; gap:10px;}
+  .nav-brand .mark{width:36px; height:36px; object-fit:contain;}
+  .nav-brand span{font-family:'Manrope',sans-serif; font-weight:800; font-size:19px; color:var(--green-deeper);}
+  .nav-cta{display:flex; gap:10px;}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:11px 22px; border-radius:9px; font-weight:600; font-size:15px;
+    text-decoration:none; border:none; cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    font-family:inherit;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{background:var(--green); color:#fff; box-shadow:0 2px 0 var(--green-dark);}
+  .btn-primary:hover{background:#0c8c60;}
+  .btn-outline{background:transparent; color:var(--green-dark); border:1.5px solid var(--green-dark);}
+  .btn-outline:hover{background:var(--bg-tint);}
+  .btn-blue{background:var(--blue); color:#fff; box-shadow:0 2px 0 #1d4fc4;}
+  .btn-blue:hover{background:#1e56d6;}
+  .btn-sm{padding:9px 16px; font-size:14px;}
+  .nav-cta .btn-outline{display:none;}
+  @media(min-width:640px){ .nav-cta .btn-outline{display:inline-flex;} }
+
+  /* HERO */
+  .hero{
+    padding:64px 0 56px;
+    background:linear-gradient(180deg, var(--bg-tint) 0%, #ffffff 100%);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1fr; gap:40px; align-items:center;
+  }
+  @media(min-width:900px){ .hero-grid{grid-template-columns:1.05fr 0.95fr; gap:56px;} }
+  .eyebrow-pill{
+    display:inline-flex; align-items:center; gap:8px;
+    background:#E6F6EF; color:var(--green-dark); font-weight:600; font-size:13.5px;
+    padding:7px 14px; border-radius:100px; margin-bottom:18px;
+  }
+  .eyebrow-pill svg{width:14px; height:14px;}
+  h1{
+    font-size:clamp(30px, 5vw, 44px);
+    line-height:1.22; font-weight:700; color:var(--ink);
+    margin-bottom:18px; letter-spacing:-0.01em;
+  }
+  h1 .accent{color:var(--green);}
+  .hero p.lead{
+    font-size:18px; color:var(--body); max-width:520px; margin-bottom:30px;
+  }
+  .hero-actions{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:28px;}
+  .hero-actions .btn{padding:14px 26px; font-size:16px;}
+  .trust-row{display:flex; flex-wrap:wrap; gap:18px; color:var(--body); font-size:14px;}
+  .trust-row span{display:flex; align-items:center; gap:6px;}
+  .trust-row svg{width:16px; height:16px; color:var(--green);}
+
+  /* HERO VISUAL */
+  .hero-visual{
+    background:linear-gradient(155deg, var(--green) 0%, var(--green-dark) 100%);
+    border-radius:22px; padding:32px;
+    position:relative; overflow:hidden;
+    box-shadow:0 20px 40px -18px rgba(6,95,70,0.45);
+  }
+  .hero-visual::before{
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(circle at 80% 0%, rgba(255,255,255,0.18), transparent 55%);
+  }
+  .mock-window{
+    background:#fff; border-radius:14px; overflow:hidden; position:relative; z-index:1;
+    box-shadow:0 12px 30px -10px rgba(0,0,0,0.35);
+  }
+  .mock-bar{
+    display:flex; align-items:center; gap:6px; padding:10px 14px; background:#F1F5F3; border-bottom:1px solid var(--line);
+  }
+  .mock-bar i{width:9px; height:9px; border-radius:50%; background:#D7E2DE; display:block;}
+  .mock-body{padding:18px;}
+  .mock-row{display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px dashed var(--line); font-size:13.5px;}
+  .mock-row:last-child{border-bottom:none;}
+  .mock-row .name{color:var(--ink); font-weight:600;}
+  .mock-row .amt{color:var(--green-dark); font-weight:700; font-family:'Manrope',sans-serif;}
+  .mock-stat-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px;}
+  .mock-stat{background:var(--bg-tint); border-radius:10px; padding:12px 14px;}
+  .mock-stat .label{font-size:12px; color:var(--body);}
+  .mock-stat .value{font-family:'Manrope',sans-serif; font-weight:800; font-size:19px; color:var(--green-deeper); margin-top:2px;}
+  .offline-chip{
+    position:absolute; top:20px; right:20px; z-index:2;
+    background:#fff; color:var(--green-dark); font-weight:700; font-size:12.5px;
+    padding:8px 12px; border-radius:100px; display:flex; align-items:center; gap:6px;
+    box-shadow:0 8px 16px -6px rgba(0,0,0,0.25);
+  }
+  .offline-chip svg{width:14px;height:14px;}
+
+  /* TRUST STRIP */
+  .strip{
+    background:var(--green-deeper); padding:22px 0;
+  }
+  .strip-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:18px; color:#DCF3E9;
+  }
+  @media(min-width:700px){ .strip-grid{grid-template-columns:repeat(4,1fr);} }
+  .strip-item{display:flex; align-items:center; gap:10px; font-size:14.5px; font-weight:600;}
+  .strip-item svg{width:20px; height:20px; flex-shrink:0; color:#7FE0BB;}
+
+  /* SECTION HEADS */
+  .section{padding:76px 0;}
+  .section-head{max-width:640px; margin-bottom:44px;}
+  .section-head h2{font-size:clamp(24px,3.4vw,32px); font-weight:700; margin-bottom:12px;}
+  .section-head p{color:var(--body); font-size:16.5px;}
+
+  /* FEATURES ZIGZAG */
+  .feature-row{
+    display:grid; grid-template-columns:1fr; gap:20px; align-items:center;
+    padding:28px 0; border-bottom:1px solid var(--line);
+  }
+  .feature-row:last-child{border-bottom:none;}
+  @media(min-width:760px){
+    .feature-row{grid-template-columns:64px 1fr; gap:24px;}
+  }
+  .feature-icon{
+    width:56px; height:56px; border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--bg-tint); color:var(--green-dark); flex-shrink:0;
+  }
+  .feature-icon svg{width:28px; height:28px;}
+  .feature-row.alt .feature-icon{background:#EAF1FE; color:var(--blue);}
+  .feature-text h3{font-size:19px; font-weight:700; margin-bottom:6px;}
+  .feature-text p{color:var(--body); font-size:15.5px; max-width:600px;}
+
+  /* COMPARISON */
+  .compare-wrap{background:var(--bg-tint); border-radius:20px; padding:36px 28px;}
+  .compare-grid{display:grid; grid-template-columns:1fr; gap:0; border-radius:14px; overflow:hidden;}
+  @media(min-width:720px){ .compare-grid{grid-template-columns:1fr 1fr;} }
+  .compare-col{background:#fff; padding:28px 26px;}
+  .compare-col.win{background:var(--green-deeper); color:#fff;}
+  .compare-col h4{font-size:15px; text-transform:none; font-weight:700; margin-bottom:18px; opacity:.85;}
+  .compare-col ul{list-style:none;}
+  .compare-col li{display:flex; gap:10px; align-items:flex-start; font-size:15px; padding:9px 0;}
+  .compare-col li svg{width:18px; height:18px; flex-shrink:0; margin-top:2px;}
+  .compare-col:not(.win) li svg{color:#C4CDC9;}
+  .compare-col.win li svg{color:#7FE0BB;}
+
+  /* PRICING */
+  .price-panel{
+    background:linear-gradient(155deg, var(--green) 0%, var(--green-dark) 100%);
+    border-radius:24px; padding:44px 32px; color:#fff;
+    display:grid; grid-template-columns:1fr; gap:28px;
+    position:relative; overflow:hidden;
+  }
+  @media(min-width:800px){ .price-panel{grid-template-columns:1.1fr 0.9fr; align-items:center;} }
+  .price-panel::before{
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(circle at 90% 100%, rgba(255,255,255,0.15), transparent 50%);
+  }
+  .price-left{position:relative; z-index:1;}
+  .price-left h3{font-size:26px; font-weight:700; margin-bottom:10px;}
+  .price-left p{color:#DCF3E9; font-size:15.5px; max-width:420px;}
+  .price-list{list-style:none; margin-top:20px; display:grid; gap:10px;}
+  .price-list li{display:flex; gap:10px; font-size:15px; align-items:flex-start;}
+  .price-list svg{width:18px; height:18px; color:#7FE0BB; flex-shrink:0; margin-top:2px;}
+  .price-right{
+    background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25);
+    border-radius:16px; padding:28px; text-align:center; position:relative; z-index:1;
+  }
+  .price-tag{font-family:'Manrope',sans-serif; font-weight:800; font-size:42px; line-height:1;}
+  .price-tag sub{font-family:'Hind Siliguri',sans-serif; font-weight:600; font-size:15px; opacity:.8;}
+  .price-note{font-size:13.5px; color:#DCF3E9; margin:8px 0 20px;}
+  .price-right .btn{width:100%;}
+
+  /* BUY / CONTACT */
+  .buy-grid{display:grid; grid-template-columns:1fr; gap:28px;}
+  @media(min-width:820px){ .buy-grid{grid-template-columns:1fr 1fr;} }
+  .buy-card{border:1px solid var(--line); border-radius:18px; padding:28px;}
+  .buy-card h3{font-size:19px; font-weight:700; margin-bottom:8px; display:flex; align-items:center; gap:10px;}
+  .buy-card h3 svg{width:22px; height:22px; color:var(--green);}
+  .buy-card p.desc{color:var(--body); font-size:14.5px; margin-bottom:18px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block; font-size:13.5px; font-weight:600; color:var(--ink); margin-bottom:6px;}
+  .field input, .field select{
+    width:100%; padding:11px 13px; border:1.5px solid var(--line); border-radius:9px;
+    font-size:14.5px; font-family:inherit; background:#fff; color:var(--ink);
+  }
+  .field input:focus, .field select:focus{outline:2px solid var(--green); outline-offset:1px; border-color:var(--green);}
+  .whatsapp-direct{
+    display:flex; flex-direction:column; align-items:flex-start; justify-content:center; height:100%;
+  }
+  .whatsapp-direct .big-icon{
+    width:52px; height:52px; border-radius:14px; background:#E6F6EF; color:var(--green-dark);
+    display:flex; align-items:center; justify-content:center; margin-bottom:16px;
+  }
+  .whatsapp-direct .big-icon svg{width:28px; height:28px;}
+
+  /* FOOTER */
+  footer{background:var(--green-deeper); color:#BFE3D4; padding:44px 0 26px;}
+  .footer-grid{display:flex; flex-wrap:wrap; justify-content:space-between; gap:28px; margin-bottom:28px;}
+  .footer-brand{display:flex; align-items:center; gap:10px;}
+  .footer-brand span{font-family:'Manrope',sans-serif; font-weight:800; font-size:18px; color:#fff;}
+  .footer-links{display:flex; gap:22px; flex-wrap:wrap; font-size:14.5px;}
+  .footer-links a{text-decoration:none; color:#BFE3D4;}
+  .footer-links a:hover{color:#fff;}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,0.12); padding-top:20px; font-size:13.5px; color:#7FAF9B; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between;}
+
+  .visually-hidden{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0);}
+  :focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="#top" class="nav-brand">
+      <img src="logo-mark.png" alt="PharmaSeba" class="mark">
+      <span>PharmaSeba</span>
+    </a>
+    <div class="nav-cta">
+      <a href="#download" class="btn btn-outline btn-sm">ডাউনলোড</a>
+      <a href="#pricing" class="btn btn-primary btn-sm">কিনুন</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 2v20M2 12h20"/></svg>
+          বাংলাদেশের ফার্মেসির জন্য তৈরি
+        </span>
+        <h1>আপনার ফার্মেসি,<br>এখন <span class="accent">ইন্টারনেট ছাড়াই</span><br>হাতের মুঠোয়</h1>
+        <p class="lead">PharmaSeba দিয়ে বিলিং, স্টক, বাকি/খাতা আর দৈনিক হিসাব রাখুন এক জায়গায়। নেট না থাকলেও অ্যাপ পুরোপুরি চলবে।</p>
+        <div class="hero-actions">
+          <a href="#download" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13m0 0l-4.5-4.5M12 16l4.5-4.5"/><path d="M4 19h16"/></svg>
+            ডাউনলোড করুন
+          </a>
+          <a href="#pricing" class="btn btn-outline">দাম দেখুন</a>
+        </div>
+        <div class="trust-row">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>একবার কিনুন, সারাজীবন ব্যবহার</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>মাসিক কোনো চার্জ নেই</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="offline-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0119 12.55M5 12.55a10.94 10.94 0 015.17-2.39M10.71 5.05A16 16 0 0122.58 9M1.42 9a15.91 15.91 0 014.7-2.88M8.53 16.11a6 6 0 016.95 0M12 20h.01"/></svg>
+          অফলাইনে চলে
+        </div>
+        <div class="mock-window">
+          <div class="mock-bar"><i></i><i></i><i></i></div>
+          <div class="mock-body">
+            <div class="mock-row"><span class="name">প্যারাসিটামল ৫০০mg</span><span class="amt">৳ ৫</span></div>
+            <div class="mock-row"><span class="name">নাপা এক্সট্রা</span><span class="amt">৳ ১২</span></div>
+            <div class="mock-row"><span class="name">সেফ্রাডিন ৫০০mg</span><span class="amt">৳ ৪৫</span></div>
+            <div class="mock-stat-grid">
+              <div class="mock-stat"><div class="label">আজকের বিক্রি</div><div class="value">৳৮,৪০০</div></div>
+              <div class="mock-stat"><div class="label">মোট বাকি</div><div class="value">৳২,১৫০</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="strip">
+    <div class="wrap strip-grid">
+      <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/></svg>দ্রুত POS বিলিং</div>
+      <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8V6a2 2 0 00-2-2H5a2 2 0 00-2 2v2m18 0v10a2 2 0 01-2 2H5a2 2 0 01-2-2V8m18 0H3m6 5h6"/></svg>স্টক ও মেয়াদ ট্র্যাকিং</div>
+      <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M17 9V7a4 4 0 00-8 0v2M5 9h14l1 11H4L5 9z"/></svg>বাকি/খাতা ব্যবস্থাপনা</div>
+      <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M8 17V10m5 7V6m5 11v-4"/></svg>দৈনিক রিপোর্ট</div>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <section class="section" id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>একটা অ্যাপেই ফার্মেসির সব কাজ</h2>
+        <p>আলাদা খাতা, আলাদা হিসাব রাখার দিন শেষ। PharmaSeba আপনার কাউন্টার, স্টক আর হিসাব — সব একসাথে সামলায়।</p>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5M7 14h4M7 17h7"/></svg>
+        </div>
+        <div class="feature-text">
+          <h3>পিওএস বিলিং</h3>
+          <p>ওষুধ খুঁজুন, বিল বানান, প্রিন্ট বা শেয়ার করুন — কয়েক সেকেন্ডে। কাউন্টারে লাইন লম্বা হবে না।</p>
+        </div>
+      </div>
+
+      <div class="feature-row alt">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8V6a2 2 0 00-2-2H5a2 2 0 00-2 2v2m18 0v10a2 2 0 01-2 2H5a2 2 0 01-2-2V8m18 0H3m6 5h6"/></svg>
+        </div>
+        <div class="feature-text">
+          <h3>স্টক ও ব্যাচ ট্র্যাকিং</h3>
+          <p>কোন ওষুধ কম আছে, কোনটার মেয়াদ শেষ হচ্ছে — আগেই জানতে পারবেন। FIFO পদ্ধতিতে ব্যাচ হিসাব রাখা হয়।</p>
+        </div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M17 9V7a4 4 0 00-8 0v2M5 9h14l1 11H4L5 9z"/></svg>
+        </div>
+        <div class="feature-text">
+          <h3>বাকি / খাতা</h3>
+          <p>কে কত বাকি রেখেছে, কে কত শোধ করেছে — প্রতিটা হিসাব একদম পরিষ্কার থাকবে, ভুলে যাওয়ার ভয় নেই।</p>
+        </div>
+      </div>
+
+      <div class="feature-row alt">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M8 17V10m5 7V6m5 11v-4"/></svg>
+        </div>
+        <div class="feature-text">
+          <h3>বিক্রি ও লাভের রিপোর্ট</h3>
+          <p>দিন শেষে, সপ্তাহ শেষে বা মাস শেষে — কত বিক্রি হলো, কত লাভ হলো, এক ক্লিকেই দেখুন।</p>
+        </div>
+      </div>
+
+      <div class="feature-row">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17.5" cy="8.5" r="2.4"/><path d="M16 14.2c2.6.4 4.5 2.3 4.5 4.8"/></svg>
+        </div>
+        <div class="feature-text">
+          <h3>স্টাফ ও অনুমতি নিয়ন্ত্রণ</h3>
+          <p>মালিক আর কর্মচারীর জন্য আলাদা অ্যাক্সেস। কে কী দেখতে বা করতে পারবে, আপনি ঠিক করে দেবেন।</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="compare-wrap">
+        <div class="section-head" style="margin-bottom:28px;">
+          <h2>প্রতি মাসে টাকা কাটবে না</h2>
+          <p>বেশিরভাগ ফার্মেসি সফটওয়্যার চলে ইন্টারনেট দিয়ে আর মাসে মাসে বিল করে। PharmaSeba চলে অফলাইনে, দাম একবারই।</p>
+        </div>
+        <div class="compare-grid">
+          <div class="compare-col">
+            <h4>সাধারণ ক্লাউড সফটওয়্যার</h4>
+            <ul>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>প্রতি মাসে বিল দিতে হয়</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>ইন্টারনেট ছাড়া চলে না</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>নেট ধীরে হলে বিলিং আটকে যায়</li>
+            </ul>
+          </div>
+          <div class="compare-col win">
+            <h4>PharmaSeba</h4>
+            <ul>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>একবার কিনুন, সারাজীবন ব্যবহার করুন</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>ইন্টারনেট ছাড়াই সম্পূর্ণ কাজ করে</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>কাউন্টারে বিলিং কখনো থামে না</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section" id="pricing">
+    <div class="wrap">
+      <div class="price-panel">
+        <div class="price-left">
+          <h3>একটাই দাম, ঝামেলা নেই</h3>
+          <p>একবার কিনুন, নিজের ফার্মেসিতে ইনস্টল করুন — যতদিন খুশি ব্যবহার করুন।</p>
+          <ul class="price-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>সম্পূর্ণ অ্যাপ — বিলিং, স্টক, বাকি/খাতা, রিপোর্ট</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>১টি কম্পিউটারে ব্যবহার</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>ইন্টারনেট ছাড়াই সম্পূর্ণ চলবে</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>১ বছর ফ্রি আপডেট ও সাপোর্ট</li>
+          </ul>
+        </div>
+        <div class="price-right">
+          <div class="price-tag">৳৩,৫০০ <sub>/ একবার</sub></div>
+          <div class="price-note">কোনো লুকানো খরচ নেই</div>
+          <a href="#buy" class="btn" style="background:#fff; color:var(--green-dark);">কিনতে চাই</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUY / CONTACT -->
+  <section class="section" id="buy">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>কেনার জন্য যোগাযোগ করুন</h2>
+        <p>ফর্ম পূরণ করুন অথবা সরাসরি WhatsApp-এ মেসেজ করুন — দুটোই সহজ।</p>
+      </div>
+      <div class="buy-grid">
+        <div class="buy-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            ফর্ম পূরণ করুন
+          </h3>
+          <p class="desc">তথ্য দিন, সাবমিট করলে সরাসরি WhatsApp খুলে যাবে প্রি-ফিল করা মেসেজ নিয়ে।</p>
+          <form id="buyForm">
+            <div class="field">
+              <label for="shopName">ফার্মেসি / দোকানের নাম</label>
+              <input type="text" id="shopName" required placeholder="যেমন: আনোয়ার ফার্মেসি">
+            </div>
+            <div class="field">
+              <label for="ownerName">আপনার নাম</label>
+              <input type="text" id="ownerName" required placeholder="আপনার নাম লিখুন">
+            </div>
+            <div class="field">
+              <label for="phone">ফোন নম্বর</label>
+              <input type="tel" id="phone" required placeholder="01XXXXXXXXX">
+            </div>
+            <div class="field">
+              <label for="district">জেলা</label>
+              <input type="text" id="district" placeholder="যেমন: বগুড়া">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%; margin-top:6px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C10.4 9 10 8 9.8 7.6c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.7 0-3.3-.5-4.6-1.3l-.3-.2-3.4 1.1 1.1-3.3-.2-.3C3.7 14.9 3.2 13.5 3.2 12c0-4.8 3.9-8.7 8.7-8.7s8.7 3.9 8.7 8.7-3.8 8.7-8.6 8.7z"/></svg>
+              WhatsApp-এ পাঠান
+            </button>
+          </form>
+        </div>
+
+        <div class="buy-card whatsapp-direct">
+          <div class="big-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C10.4 9 10 8 9.8 7.6c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.7 0-3.3-.5-4.6-1.3l-.3-.2-3.4 1.1 1.1-3.3-.2-.3C3.7 14.9 3.2 13.5 3.2 12c0-4.8 3.9-8.7 8.7-8.7s8.7 3.9 8.7 8.7-3.8 8.7-8.6 8.7z"/></svg>
+          </div>
+          <h3 style="margin-bottom:8px;">সরাসরি মেসেজ করুন</h3>
+          <p class="desc">ফর্ম পূরণ করার দরকার নেই — সরাসরি WhatsApp-এ চ্যাট শুরু করুন, প্রশ্ন থাকলে জিজ্ঞেস করুন।</p>
+          <a href="https://wa.me/8801XXXXXXXXX?text=আমি%20PharmaSeba%20সম্পর্কে%20জানতে%20চাই" target="_blank" rel="noopener" class="btn btn-blue">
+            WhatsApp-এ চ্যাট করুন
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="section" id="download" style="padding-top:0;">
+    <div class="wrap">
+      <div class="compare-wrap" style="background:var(--bg-tint); text-align:left; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;">
+        <div>
+          <h2 style="font-size:22px; margin-bottom:6px;">অ্যাপ ডাউনলোড করুন</h2>
+          <p style="color:var(--body); font-size:15px;">Windows-এর জন্য ইনস্টলার — ডাউনলোড করে চালু করলেই লাইসেন্স অ্যাক্টিভেট করতে পারবেন।</p>
+        </div>
+        <a href="https://github.com/sanowarhp/pharmaseba/releases/latest" class="btn btn-primary" style="white-space:nowrap;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13m0 0l-4.5-4.5M12 16l4.5-4.5"/><path d="M4 19h16"/></svg>
+          ডাউনলোড করুন
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="footer-mark.png" alt="PharmaSeba" style="width:32px; height:32px; object-fit:contain;">
+        <span>PharmaSeba</span>
+      </div>
+      <div class="footer-links">
+        <a href="#features">ফিচার</a>
+        <a href="#pricing">দাম</a>
+        <a href="#buy">যোগাযোগ</a>
+        <a href="https://github.com/sanowarhp/pharmaseba" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 PharmaSeba — একটি Veloxa Digital প্রোডাক্ট</span>
+      <span>তৈরি বাংলাদেশের ফার্মেসির জন্য</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('buyForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var shop = document.getElementById('shopName').value.trim();
+    var owner = document.getElementById('ownerName').value.trim();
+    var phone = document.getElementById('phone').value.trim();
+    var district = document.getElementById('district').value.trim();
+
+    var msg = 'আমি PharmaSeba কিনতে চাই।%0A' +
+      'ফার্মেসির নাম: ' + encodeURIComponent(shop) + '%0A' +
+      'নাম: ' + encodeURIComponent(owner) + '%0A' +
+      'ফোন: ' + encodeURIComponent(phone) +
+      (district ? '%0Aজেলা: ' + encodeURIComponent(district) : '');
+
+    var waNumber = '8801XXXXXXXXX'; // TODO: replace with real WhatsApp business number
+    window.open('https://wa.me/' + waNumber + '?text=' + msg, '_blank');
+  });
+</script>
+
+</body>
+</html>
