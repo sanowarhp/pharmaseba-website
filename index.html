@@ -245,6 +245,11 @@
   .footer-links{display:flex; gap:22px; flex-wrap:wrap; font-size:14.5px;}
   .footer-links a{text-decoration:none; color:#BFE3D4;}
   .footer-links a:hover{color:#fff;}
+  .footer-cols{display:flex; flex-wrap:wrap; gap:36px;}
+  .footer-col h5{font-size:13px; font-weight:700; color:#fff; margin-bottom:12px; letter-spacing:.02em;}
+  .footer-col{display:flex; flex-direction:column; gap:9px; font-size:14px;}
+  .footer-col a{text-decoration:none; color:#BFE3D4;}
+  .footer-col a:hover{color:#fff;}
   .footer-bottom{border-top:1px solid rgba(255,255,255,0.12); padding-top:20px; font-size:13.5px; color:#7FAF9B; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between;}
 
   .visually-hidden{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0);}
@@ -512,11 +517,25 @@
         <img src="footer-mark.png" alt="PharmaSeba" style="width:32px; height:32px; object-fit:contain;">
         <span>PharmaSeba</span>
       </div>
-      <div class="footer-links">
-        <a href="#features">ফিচার</a>
-        <a href="#pricing">দাম</a>
-        <a href="#buy">যোগাযোগ</a>
-        <a href="https://github.com/sanowarhp/pharmaseba" target="_blank" rel="noopener">GitHub</a>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>প্রোডাক্ট</h5>
+          <a href="#features">ফিচার</a>
+          <a href="#pricing">দাম</a>
+          <a href="#download">ডাউনলোড</a>
+        </div>
+        <div class="footer-col">
+          <h5>লিগ্যাল</h5>
+          <a href="terms.html">Terms of Service</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="data-processing.html">Data Processing</a>
+          <a href="refund-policy.html">Refund &amp; Support</a>
+        </div>
+        <div class="footer-col">
+          <h5>যোগাযোগ</h5>
+          <a href="https://wa.me/8801935291005" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://github.com/sanowarhp/pharmaseba" target="_blank" rel="noopener">GitHub</a>
+        </div>
       </div>
     </div>
     <div class="footer-bottom">
@@ -540,7 +559,7 @@
       'ফোন: ' + encodeURIComponent(phone) +
       (district ? '%0Aজেলা: ' + encodeURIComponent(district) : '');
 
-    var waNumber = '88019352o1005'; // TODO: replace with real WhatsApp business number
+    var waNumber = '8801935291005';
     window.open('https://wa.me/' + waNumber + '?text=' + msg, '_blank');
   });
 </script>
