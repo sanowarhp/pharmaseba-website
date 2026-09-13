@@ -54,6 +54,8 @@
   .nav-brand .mark{width:36px; height:36px; object-fit:contain;}
   .nav-brand span{font-family:'Manrope',sans-serif; font-weight:800; font-size:19px; color:var(--green-deeper);}
   .nav-cta{display:flex; gap:10px;}
+  .nav-blog-link{display:none; text-decoration:none; color:var(--ink); font-weight:600; font-size:14.5px; margin-right:4px;}
+  @media(min-width:640px){ .nav-blog-link{display:inline-flex; align-items:center;} }
   .btn{
     display:inline-flex; align-items:center; justify-content:center; gap:8px;
     padding:11px 22px; border-radius:9px; font-weight:600; font-size:15px;
@@ -265,6 +267,7 @@
       <span>PharmaSeba</span>
     </a>
     <div class="nav-cta">
+      <a href="blog/index.html" class="nav-blog-link">ব্লগ</a>
       <a href="#download" class="btn btn-outline btn-sm">ডাউনলোড</a>
       <a href="#pricing" class="btn btn-primary btn-sm">কিনুন</a>
     </div>
@@ -523,6 +526,7 @@
           <a href="#features">ফিচার</a>
           <a href="#pricing">দাম</a>
           <a href="#download">ডাউনলোড</a>
+          <a href="blog/index.html">ব্লগ</a>
         </div>
         <div class="footer-col">
           <h5>লিগ্যাল</h5>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ফার্মেসির স্টক/ইনভেন্টরি ম্যানেজমেন্ট কীভাবে সহজ করবেন — PharmaSeba</title>
+<meta name="description" content="ফার্মেসির স্টক ম্যানেজমেন্টে সবচেয়ে সাধারণ সমস্যাগুলো এবং ব্যাচ-ভিত্তিক ইনভেন্টরি সিস্টেম কীভাবে সমাধান দেয়।">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pharmaseba.com/blog/pharmacy-inventory-management.html">
+<link rel="icon" type="image/png" href="../logo-mark.png">
+<meta property="og:title" content="ফার্মেসির স্টক/ইনভেন্টরি ম্যানেজমেন্ট কীভাবে সহজ করবেন — PharmaSeba">
+<meta property="og:description" content="ফার্মেসির স্টক ম্যানেজমেন্টে সবচেয়ে সাধারণ সমস্যাগুলো এবং ব্যাচ-ভিত্তিক ইনভেন্টরি সিস্টেম কীভাবে সমাধান দেয়।">
+<meta property="og:image" content="https://pharmaseba.com/logo-mark.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://pharmaseba.com/blog/pharmacy-inventory-management.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ফার্মেসির স্টক/ইনভেন্টরি ম্যানেজমেন্ট কীভাবে সহজ করবেন — PharmaSeba">
+<meta name="twitter:description" content="ফার্মেসির স্টক ম্যানেজমেন্টে সবচেয়ে সাধারণ সমস্যাগুলো এবং ব্যাচ-ভিত্তিক ইনভেন্টরি সিস্টেম কীভাবে সমাধান দেয়।">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green: #0E9F6E;
+  --green-dark: #065F46;
+  --green-deeper: #043D2E;
+  --blue: #2563EB;
+  --bg-tint: #F7FAF9;
+  --white: #FFFFFF;
+  --ink: #0F2A22;
+  --body: #3F5750;
+  --line: #E1EBE7;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Hind Siliguri','Manrope',sans-serif; color:var(--ink); background:var(--white); line-height:1.65; font-size:16px;}
+img{max-width:100%; display:block;}
+a{color:inherit;}
+.wrap{max-width:860px; margin:0 auto; padding:0 24px;}
+header{position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.92); backdrop-filter:saturate(180%) blur(8px); border-bottom:1px solid var(--line);}
+.nav{display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:1120px; margin:0 auto;}
+.nav-brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
+.nav-brand .mark{width:36px; height:36px; object-fit:contain;}
+.nav-brand span{font-family:'Manrope',sans-serif; font-weight:800; font-size:19px; color:var(--green-deeper);}
+.nav-cta{display:flex; align-items:center; gap:10px;}
+.nav-blog-link{text-decoration:none; color:var(--ink); font-weight:600; font-size:14.5px; margin-right:4px;}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:11px 22px; border-radius:9px; font-weight:600; font-size:15px; text-decoration:none; border:none; cursor:pointer; font-family:inherit;}
+.btn-primary{background:var(--green); color:#fff; box-shadow:0 2px 0 var(--green-dark);}
+.btn-outline{background:transparent; color:var(--green-dark); border:1.5px solid var(--green-dark);}
+.btn-sm{padding:9px 16px; font-size:14px;}
+.nav-cta .btn-outline{display:none;}
+@media(min-width:640px){ .nav-cta .btn-outline{display:inline-flex;} }
+
+.breadcrumb{font-size:13.5px; color:var(--body); padding:22px 0 0; display:flex; gap:6px; flex-wrap:wrap;}
+.breadcrumb a{color:var(--green-dark); text-decoration:none;}
+.breadcrumb span{color:#9BB3AB;}
+
+.blog-hero{padding:18px 0 8px;}
+.blog-hero .kicker{display:inline-block; background:#E6F6EF; color:var(--green-dark); font-weight:600; font-size:13px; padding:6px 13px; border-radius:100px; margin-bottom:16px;}
+.blog-hero h1{font-size:clamp(26px,4.2vw,38px); font-weight:700; margin-bottom:12px; letter-spacing:-0.01em; line-height:1.3;}
+.blog-hero .meta{color:var(--body); font-size:14px;}
+
+.article-body{padding:28px 0 72px;}
+.article-body h2{font-size:21px; font-weight:700; margin:32px 0 12px; color:var(--green-deeper);}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{color:var(--body); font-size:15.8px; margin-bottom:15px; max-width:74ch;}
+.article-body ul, .article-body ol{color:var(--body); font-size:15.8px; margin:0 0 15px 22px;}
+.article-body li{margin-bottom:8px;}
+.article-body a{color:var(--green-dark); text-decoration:underline; font-weight:600;}
+.article-body strong{color:var(--ink);}
+.cta-box{background:var(--bg-tint); border:1px solid var(--line); border-radius:14px; padding:22px; margin:30px 0; text-align:center;}
+.cta-box p{margin-bottom:14px; color:var(--ink); font-weight:600; font-size:16px;}
+
+.blog-list-hero{padding:44px 0 10px;}
+.blog-list-hero .kicker{display:inline-block; background:#E6F6EF; color:var(--green-dark); font-weight:600; font-size:13px; padding:6px 13px; border-radius:100px; margin-bottom:16px;}
+.blog-list-hero h1{font-size:clamp(28px,4.5vw,40px); font-weight:700; margin-bottom:10px;}
+.blog-list-hero p{color:var(--body); font-size:15.5px; max-width:60ch;}
+.blog-grid{display:grid; grid-template-columns:1fr; gap:18px; padding:32px 0 72px;}
+@media(min-width:720px){ .blog-grid{grid-template-columns:1fr 1fr;} }
+.blog-card{display:block; text-decoration:none; color:inherit; border:1px solid var(--line); border-radius:16px; padding:24px; transition:border-color .15s, transform .15s;}
+.blog-card:hover{border-color:var(--green); transform:translateY(-2px);}
+.blog-card .tag{display:inline-block; font-size:12.5px; font-weight:700; color:var(--green-dark); background:#E6F6EF; padding:4px 10px; border-radius:100px; margin-bottom:12px;}
+.blog-card h3{font-size:19px; font-weight:700; margin-bottom:8px; line-height:1.4;}
+.blog-card p{color:var(--body); font-size:14.5px; line-height:1.55;}
+
+footer{background:var(--green-deeper); color:#BFE3D4; padding:44px 0 26px;}
+.footer-grid{display:flex; flex-wrap:wrap; justify-content:space-between; gap:28px; margin-bottom:28px;}
+.footer-brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
+.footer-brand span{font-family:'Manrope',sans-serif; font-weight:800; font-size:18px; color:#fff;}
+.footer-cols{display:flex; flex-wrap:wrap; gap:36px;}
+.footer-col h5{font-size:13px; font-weight:700; color:#fff; margin-bottom:12px; letter-spacing:.02em;}
+.footer-col{display:flex; flex-direction:column; gap:9px; font-size:14px;}
+.footer-col a{text-decoration:none; color:#BFE3D4;}
+.footer-col a:hover{color:#fff;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.12); padding-top:20px; font-size:13.5px; color:#7FAF9B; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between;}
+:focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Pharmacy Inventory Management Made Simple",
+  "description": "ফার্মেসির স্টক ম্যানেজমেন্টে সবচেয়ে সাধারণ সমস্যাগুলো এবং ব্যাচ-ভিত্তিক ইনভেন্টরি সিস্টেম কীভাবে সমাধান দেয়।",
+  "author": {"@type": "Organization", "name": "Veloxa Digital"},
+  "publisher": {"@type": "Organization", "name": "PharmaSeba"},
+  "datePublished": "2026-09-12",
+  "dateModified": "2026-09-12",
+  "mainEntityOfPage": "https://pharmaseba.com/blog/pharmacy-inventory-management.html"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://pharmaseba.com/"},
+    {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://pharmaseba.com/blog/index.html"},
+    {"@type": "ListItem", "position": 3, "name": "Pharmacy Inventory Management Made Simple", "item": "https://pharmaseba.com/blog/pharmacy-inventory-management.html"}
+  ]
+}
+</script>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="../index.html" class="nav-brand">
+      <img src="../logo-mark.png" alt="PharmaSeba" class="mark">
+      <span>PharmaSeba</span>
+    </a>
+    <div class="nav-cta">
+      <a href="index.html" class="nav-blog-link">ব্লগ</a>
+      <a href="../index.html#download" class="btn btn-outline btn-sm">ডাউনলোড</a>
+      <a href="../index.html#pricing" class="btn btn-primary btn-sm">কিনুন</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap breadcrumb">
+    <a href="../index.html">হোম</a><span>/</span><a href="index.html">ব্লগ</a><span>/</span>ফার্মেসির স্টক/ইনভেন্টরি ম্যানেজমেন্ট কীভাবে সহজ করবেন
+  </div>
+  <div class="wrap blog-hero">
+    <span class="kicker">স্টক ম্যানেজমেন্ট</span>
+    <h1>ফার্মেসির স্টক/ইনভেন্টরি ম্যানেজমেন্ট কীভাবে সহজ করবেন</h1>
+    <p class="meta">প্রকাশিত: ১২ সেপ্টেম্বর, ২০২৬ · পড়তে লাগবে ৫ মিনিট</p>
+  </div>
+  <div class="wrap article-body">
+
+    <p>ফার্মেসি ব্যবসায় সবচেয়ে বড় মাথাব্যথাগুলোর একটি হলো <strong>স্টক ম্যানেজমেন্ট</strong> — কোন ওষুধ শেষ হয়ে যাচ্ছে, কোনটা অতিরিক্ত পড়ে আছে, আর কোন ব্যাচ আগে বিক্রি করা দরকার, এসব ম্যানুয়ালি ট্র্যাক করা কঠিন।</p>
+
+    <h2>সাধারণ সমস্যাগুলো</h2>
+    <ul>
+      <li>হঠাৎ দরকারি ওষুধ স্টকে না থাকা (শর্টেজ)</li>
+      <li>অতিরিক্ত স্টক কিনে ফেলা, যা পরে Expire হয়ে যায়</li>
+      <li>একই ওষুধের পুরনো ব্যাচ ফেলে নতুন ব্যাচ আগে বিক্রি হয়ে যাওয়া</li>
+      <li>ম্যানুয়াল হিসাবে ভুল থেকে যাওয়া</li>
+    </ul>
+
+    <h2>ব্যাচ-ভিত্তিক (FIFO) ইনভেন্টরি কী</h2>
+    <p><strong>FIFO (First In, First Out)</strong> পদ্ধতিতে যে ব্যাচ আগে কেনা হয়েছে, বিক্রির সময় সেটিই আগে হিসাবে ধরা হয়। এতে পুরনো স্টক আগে বিক্রি হয়, ফলে Expiry-জনিত লোকসান কমে যায়। PharmaSeba-এর ইনভেন্টরি সিস্টেম স্বয়ংক্রিয়ভাবে এই FIFO নিয়ম মেনে চলে।</p>
+
+    <h2>রিয়েল-টাইম স্টক আপডেট কেন জরুরি</h2>
+    <p>প্রতিটি বিক্রির সাথে সাথে স্টক সংখ্যা যদি আপডেট না হয়, তাহলে দিন শেষে হিসাব মেলাতে অনেক সময় চলে যায়। POS বিলিং সিস্টেমের সাথে ইনভেন্টরি সরাসরি যুক্ত থাকলে এই সমস্যা থাকে না — বিস্তারিত <a href="pharmacy-pos-software.html">POS Software সম্পর্কিত লেখায়</a> পাবেন।</p>
+
+    <h2>Expiry ট্র্যাকিং-এর সাথে সংযোগ</h2>
+    <p>স্টক ম্যানেজমেন্ট আর Expiry ট্র্যাকিং একসাথে কাজ করলে সবচেয়ে ভালো ফল পাওয়া যায় — কোন ব্যাচ কবে Expire হবে তা স্টকের সাথেই দেখা যায়। এই বিষয়ে বিস্তারিত জানতে পড়ুন আমাদের <a href="medicine-expiry-management.html">Medicine Expiry Management</a> গাইড।</p>
+
+    <h2>সাপ্লায়ার হিসাবের সাথে যুক্ত রাখা</h2>
+    <p>স্টক কেনার সময় কোন সাপ্লায়ার থেকে কত দামে কেনা হয়েছে তা ট্র্যাক রাখলে প্রফিট ক্যালকুলেশন সহজ হয় এবং সাপ্লায়ার পেমেন্ট হিসাবও গুছিয়ে রাখা যায়।</p>
+
+    <div class="cta-box">
+      <p>PharmaSeba-এর ব্যাচ-ভিত্তিক ইনভেন্টরি দিয়ে শর্টেজ আর ওভারস্টক — দুটো সমস্যাই কমিয়ে আনুন।</p>
+      <a href="../index.html#features" class="btn btn-primary">ফিচার দেখুন</a>
+    </div>
+    
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <a href="../index.html" class="footer-brand">
+        <img src="../footer-mark.png" alt="PharmaSeba" style="width:32px; height:32px; object-fit:contain;">
+        <span>PharmaSeba</span>
+      </a>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>প্রোডাক্ট</h5>
+          <a href="../index.html#features">ফিচার</a>
+          <a href="../index.html#pricing">দাম</a>
+          <a href="../index.html#download">ডাউনলোড</a>
+          <a href="index.html">ব্লগ</a>
+        </div>
+        <div class="footer-col">
+          <h5>লিগ্যাল</h5>
+          <a href="../terms.html">Terms of Service</a>
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../data-processing.html">Data Processing</a>
+          <a href="../refund-policy.html">Refund &amp; Support</a>
+        </div>
+        <div class="footer-col">
+          <h5>যোগাযোগ</h5>
+          <a href="https://wa.me/8801935291005" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://github.com/sanowarhp/pharmaseba-releases" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 PharmaSeba — একটি Veloxa Digital প্রোডাক্ট</span>
+      <span>তৈরি বাংলাদেশের ফার্মেসির জন্য</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
