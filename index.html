@@ -254,6 +254,31 @@
   .footer-col a:hover{color:#fff;}
   .footer-bottom{border-top:1px solid rgba(255,255,255,0.12); padding-top:20px; font-size:13.5px; color:#7FAF9B; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between;}
 
+  /* APP SCREENSHOTS */
+  .ss-tabs{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px;}
+  .ss-tab{
+    border:1.5px solid var(--line); background:#fff; color:var(--ink);
+    padding:8px 16px; border-radius:100px; font-size:14px; font-weight:600;
+    font-family:inherit; cursor:pointer;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .ss-tab:hover{border-color:var(--green);}
+  .ss-tab[aria-selected="true"]{background:var(--green); border-color:var(--green); color:#fff;}
+  .ss-frame{
+    background:linear-gradient(155deg, var(--green) 0%, var(--green-dark) 100%);
+    border-radius:20px; padding:10px 10px 0; overflow:hidden;
+    box-shadow:0 20px 40px -18px rgba(6,95,70,0.35);
+  }
+  .ss-frame-bar{display:flex; align-items:center; gap:6px; padding:6px 8px 14px;}
+  .ss-dot{width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,0.35); display:block;}
+  .ss-url{
+    margin-left:8px; background:rgba(255,255,255,0.14); color:rgba(255,255,255,0.85);
+    font-size:12.5px; font-weight:600; padding:5px 14px; border-radius:100px;
+    flex:1; max-width:280px; font-family:'Manrope',sans-serif;
+  }
+  .ss-frame-body{background:#fff; border-radius:14px 14px 0 0; overflow:hidden; line-height:0;}
+  .ss-frame-body img{width:100%; height:auto; display:block;}
+
   .visually-hidden{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0);}
   :focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
 </style>
@@ -385,6 +410,37 @@
         <div class="feature-text">
           <h3>স্টাফ ও অনুমতি নিয়ন্ত্রণ</h3>
           <p>মালিক আর কর্মচারীর জন্য আলাদা অ্যাক্সেস। কে কী দেখতে বা করতে পারবে, আপনি ঠিক করে দেবেন।</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <section class="section" id="screenshots" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>আপনার ফার্মেসি এমনই দেখাবে</h2>
+        <p>ডেমো ডেটা দিয়ে চালানো আসল PharmaSeba অ্যাপের স্ক্রিন — কোনো মকআপ না, সত্যিকারের অ্যাপ।</p>
+      </div>
+
+      <div class="ss-tabs" role="tablist" id="ssTabs">
+        <button class="ss-tab" role="tab" aria-selected="true" data-src="assets/images/screenshots/dashboard.webp" data-label="ড্যাশবোর্ড">ড্যাশবোর্ড</button>
+        <button class="ss-tab" role="tab" aria-selected="false" data-src="assets/images/screenshots/pos_sale.webp" data-label="বিক্রি / পিওএস">বিক্রি / পিওএস</button>
+        <button class="ss-tab" role="tab" aria-selected="false" data-src="assets/images/screenshots/inventory.webp" data-label="স্টক">স্টক</button>
+        <button class="ss-tab" role="tab" aria-selected="false" data-src="assets/images/screenshots/medicine_catalog.webp" data-label="মেডিসিন ক্যাটালগ">মেডিসিন ক্যাটালগ</button>
+        <button class="ss-tab" role="tab" aria-selected="false" data-src="assets/images/screenshots/due_khata.webp" data-label="বাকি / খাতা">বাকি / খাতা</button>
+        <button class="ss-tab" role="tab" aria-selected="false" data-src="assets/images/screenshots/suppliers.webp" data-label="সাপ্লায়ার">সাপ্লায়ার</button>
+        <button class="ss-tab" role="tab" aria-selected="false" data-src="assets/images/screenshots/reports.webp" data-label="রিপোর্ট">রিপোর্ট</button>
+        <button class="ss-tab" role="tab" aria-selected="false" data-src="assets/images/screenshots/staff_rbac.webp" data-label="স্টাফ ও অনুমতি">স্টাফ ও অনুমতি</button>
+      </div>
+
+      <div class="ss-frame">
+        <div class="ss-frame-bar">
+          <span class="ss-dot"></span><span class="ss-dot"></span><span class="ss-dot"></span>
+          <span class="ss-url" id="ssUrl">PharmaSeba — ড্যাশবোর্ড</span>
+        </div>
+        <div class="ss-frame-body">
+          <img id="ssImg" src="assets/images/screenshots/dashboard.webp" alt="PharmaSeba ড্যাশবোর্ড স্ক্রিনশট" width="960" height="655" loading="lazy">
         </div>
       </div>
     </div>
@@ -566,6 +622,24 @@
     var waNumber = '8801935291005';
     window.open('https://wa.me/' + waNumber + '?text=' + msg, '_blank');
   });
+</script>
+
+<script>
+  (function(){
+    var tabs = document.querySelectorAll('#ssTabs .ss-tab');
+    var img = document.getElementById('ssImg');
+    var url = document.getElementById('ssUrl');
+    tabs.forEach(function(tab){
+      tab.addEventListener('click', function(){
+        tabs.forEach(function(t){ t.setAttribute('aria-selected','false'); });
+        tab.setAttribute('aria-selected','true');
+        var label = tab.getAttribute('data-label');
+        img.src = tab.getAttribute('data-src');
+        img.alt = 'PharmaSeba ' + label + ' স্ক্রিনশট';
+        url.textContent = 'PharmaSeba — ' + label;
+      });
+    });
+  })();
 </script>
 
 </body>
