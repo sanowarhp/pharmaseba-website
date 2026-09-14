@@ -325,6 +325,7 @@
 
   gtag('config', 'G-D3QX5CYJ7J');
 </script>
+
   
 </head>
 <body>
@@ -686,5 +687,123 @@
   })();
 </script>
 
+<!-- ==========================================
+     PharmaSeba - Google Analytics 4
+     + Custom Event Tracking
+     ========================================== -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3QX5CYJ7J"></script>
+
+<script>
+  // ==========================================
+  // GA4 INITIALIZATION
+  // ==========================================
+
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-D3QX5CYJ7J');
+
+
+  // ==========================================
+  // CUSTOM EVENT TRACKING
+  // ==========================================
+
+  document.addEventListener('DOMContentLoaded', function () {
+
+
+    // ------------------------------------------
+    // DOWNLOAD BUTTON
+    // ------------------------------------------
+
+    document.querySelectorAll(
+      'a[href*="github.com/sanowarhp/pharmaseba-releases"]'
+    ).forEach(function (link) {
+
+      link.addEventListener('click', function () {
+
+        gtag('event', 'download_click', {
+          event_category: 'engagement',
+          event_label: 'PharmaSeba Windows Download',
+          link_url: this.href,
+          transport_type: 'beacon'
+        });
+
+      });
+
+    });
+
+
+    // ------------------------------------------
+    // WHATSAPP BUTTONS
+    // ------------------------------------------
+
+    document.querySelectorAll(
+      'a[href*="wa.me"]'
+    ).forEach(function (link) {
+
+      link.addEventListener('click', function () {
+
+        gtag('event', 'whatsapp_click', {
+          event_category: 'engagement',
+          event_label: 'PharmaSeba WhatsApp',
+          link_url: this.href,
+          transport_type: 'beacon'
+        });
+
+      });
+
+    });
+
+
+    // ------------------------------------------
+    // BUY BUTTONS
+    // ------------------------------------------
+
+    document.querySelectorAll(
+      'a[href="#buy"]'
+    ).forEach(function (link) {
+
+      link.addEventListener('click', function () {
+
+        gtag('event', 'buy_click', {
+          event_category: 'conversion',
+          event_label: 'Buy / Contact CTA'
+        });
+
+      });
+
+    });
+
+
+    // ------------------------------------------
+    // PURCHASE / CONTACT FORM
+    // ------------------------------------------
+
+    var buyForm = document.getElementById('buyForm');
+
+    if (buyForm) {
+
+      buyForm.addEventListener('submit', function () {
+
+        gtag('event', 'generate_lead', {
+          event_category: 'conversion',
+          event_label: 'PharmaSeba Purchase Inquiry'
+        });
+
+      });
+
+    }
+
+  });
+
+</script>
+  
 </body>
 </html>
