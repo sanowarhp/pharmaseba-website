@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap');
+
+/* PharmaSeba shared theme: matches the new home page (blue / navy / green).
+   Loaded after each sub-page's own <style>, so these values win. */
+:root{
+  --green:#1f4fe0;
+  --green-dark:#16379e;
+  --green-deeper:#0b1b4d;
+  --blue:#1f4fe0;
+  --bg-tint:#eef4ff;
+  --ink:#0f172a;
+  --body:#475569;
+  --line:#e2e8f0;
+}
+.nav-brand span, .footer-brand span{font-family:'Plus Jakarta Sans','Hind Siliguri',sans-serif;}
+.btn{border-radius:12px;}
+.btn-primary{background:#1f4fe0; background-image:none; box-shadow:none; color:#fff;}
+.btn-primary:hover{background:#1e56d6; background-image:none;}
+.btn-outline{color:#16379e; border-color:#1f4fe0;}
+.btn-outline:hover{background:#eef4ff;}
+.legal-hero .kicker, .blog-hero .kicker, .blog-list-hero .kicker, .blog-card .tag{background:#e3ecff; color:#16379e;}
+footer{background:#08133a; color:#cbd5e1;}
+.footer-col a, .footer-links a{color:#cbd5e1;}
+.footer-col a:hover, .footer-links a:hover{color:#fff;}
+.footer-bottom{border-top-color:#1e2c63; color:#94a3b8;}

@@ -1,319 +1,278 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PharmaSeba — আপনার ফার্মেসির স্মার্ট সহকারী</title>
-<meta name="description" content="PharmaSeba — অফলাইনে চলা ফার্মেসি ম্যানেজমেন্ট সফটওয়্যার। বিলিং, স্টক, বাকি/খাতা ও রিপোর্ট, একবার কিনুন সারাজীবন ব্যবহার করুন।">
+<meta name="description" content="PharmaSeba — অফলাইনে চলা ফার্মেসি ম্যানেজমেন্ট সফটওয়্যার, Windows PC ও Android মোবাইলে। বিলিং, স্টক, বাকি/খাতা ও রিপোর্ট, একবার কিনুন সারাজীবন ব্যবহার করুন।">
 <link rel="icon" type="image/png" href="/assets/images/favicon.png">
 <meta property="og:title" content="PharmaSeba — আপনার ফার্মেসির স্মার্ট সহকারী">
-<meta property="og:description" content="অফলাইনে চলা ফার্মেসি ম্যানেজমেন্ট সফটওয়্যার। একবার কিনুন, সারাজীবন ব্যবহার করুন।">
-<meta property="og:image" content="/assets/images/logo-mark.png">
+<meta property="og:description" content="অফলাইনে চলা ফার্মেসি ম্যানেজমেন্ট সফটওয়্যার — PC ও Mobile-এ। একবার কিনুন, সারাজীবন ব্যবহার করুন।">
+<meta property="og:image" content="https://pharmaseba.com/assets/images/hero-pc-mobile.webp">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;700;800&amp;display=swap" rel="stylesheet">
 <style>
   :root{
-    --green: #0E9F6E;
-    --green-dark: #065F46;
-    --green-deeper: #043D2E;
-    --blue: #2563EB;
-    --bg-tint: #F7FAF9;
-    --white: #FFFFFF;
-    --ink: #0F2A22;
-    --body: #3F5750;
-    --line: #E1EBE7;
+    --blue:#1f4fe0;
+    --blue-dark:#16379e;
+    --navy:#0b1b4d;
+    --green:#15803d;
+    --tint:#eef4ff;
+    --mint:#effaf3;
+    --ink:#0f172a;
+    --body:#475569;
+    --line:#e2e8f0;
+    --amber:#b45309;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
-  body{
-    font-family:'Hind Siliguri', 'Manrope', sans-serif;
-    color:var(--ink);
-    background:var(--white);
-    line-height:1.55;
-    font-size:16px;
-  }
+  body{font-family:'Hind Siliguri','Plus Jakarta Sans',sans-serif; color:var(--ink); background:#fff; line-height:1.55; font-size:16px; overflow-x:hidden;}
   img{max-width:100%; display:block;}
   a{color:inherit;}
-  .brand-font{font-family:'Manrope','Hind Siliguri',sans-serif;}
-  .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
+  section[id]{scroll-margin-top:72px;}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 24px;}
+  .ico{fill:none; stroke:currentColor; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round;}
+  .ico-fill{fill:currentColor; stroke:none;}
+  .jk{font-family:'Plus Jakarta Sans','Hind Siliguri',sans-serif;}
+
+  /* BUTTONS */
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:12px; min-height:50px; padding:10px 24px; border-radius:12px; font-weight:600; font-size:16px; text-decoration:none; border:none; cursor:pointer; color:#fff; font-family:inherit; transition:filter .15s ease, transform .15s ease;}
+  .btn:hover{filter:brightness(1.08);}
+  .btn:active{transform:translateY(1px);}
+  .btn-blue{background:var(--blue);}
+  .btn-green{background:var(--green);}
+  .btn-amber{background:var(--amber);}
+  .btn-outline{background:transparent; color:var(--blue-dark); border:1.5px solid var(--blue); }
+  .btn-outline:hover{background:var(--tint); filter:none;}
+  .btn-sm{min-height:42px; padding:8px 18px; font-size:14.5px; gap:8px;}
+  .btn-label{display:flex; flex-direction:column; align-items:flex-start; line-height:1.25; text-align:left;}
+  .btn-label small{font-size:12.5px; font-weight:500; opacity:.9;}
+  .btn svg{flex:none;}
 
   /* NAV */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(255,255,255,0.92);
-    backdrop-filter:saturate(180%) blur(8px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:14px 24px; max-width:1120px; margin:0 auto;
-  }
-  .nav-brand{display:flex; align-items:center; gap:10px;}
-  .nav-brand .mark{width:36px; height:36px; object-fit:contain;}
-  .nav-brand span{font-family:'Manrope',sans-serif; font-weight:800; font-size:19px; color:var(--green-deeper);}
-  .nav-cta{display:flex; gap:10px;}
-  .nav-blog-link{display:none; text-decoration:none; color:var(--ink); font-weight:600; font-size:14.5px; margin-right:4px;}
-  @media(min-width:640px){ .nav-blog-link{display:inline-flex; align-items:center;} }
-  .btn{
-    display:inline-flex; align-items:center; justify-content:center; gap:8px;
-    padding:11px 22px; border-radius:9px; font-weight:600; font-size:15px;
-    text-decoration:none; border:none; cursor:pointer;
-    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
-    font-family:inherit;
-  }
-  .btn:active{transform:translateY(1px);}
-  .btn-primary{background:linear-gradient(135deg, #14B981 0%, var(--green) 55%, #0B7A54 100%); color:#fff; box-shadow:0 2px 0 var(--green-dark), 0 8px 18px -8px rgba(6,95,70,0.55);}
-  .btn-primary:hover{background:linear-gradient(135deg, #16C98D 0%, #0c8c60 55%, #0a6b48 100%);}
-  .btn-outline{background:transparent; color:var(--green-dark); border:1.5px solid var(--green-dark);}
-  .btn-outline:hover{background:var(--bg-tint);}
-  .btn-blue{background:var(--blue); color:#fff; box-shadow:0 2px 0 #1d4fc4;}
-  .btn-blue:hover{background:#1e56d6;}
-  .btn-sm{padding:9px 16px; font-size:14px;}
-  .nav-cta .btn-outline{display:none;}
-  @media(min-width:640px){ .nav-cta .btn-outline{display:inline-flex;} }
+  header{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.94); backdrop-filter:saturate(180%) blur(8px); border-bottom:1px solid var(--line);}
+  .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 24px; max-width:1160px; margin:0 auto;}
+  .nav-brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
+  .nav-brand img{width:36px; height:36px; object-fit:contain;}
+  .nav-brand span{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:21px; color:var(--navy);}
+  .nav-links{display:none; gap:24px; align-items:center;}
+  .nav-links a{text-decoration:none; color:#334155; font-size:15px; font-weight:500;}
+  .nav-links a:hover{color:var(--blue);}
+  @media(min-width:1000px){ .nav-links{display:flex;} }
 
   /* HERO */
-  .hero{
-    padding:64px 0 56px;
-    background:linear-gradient(180deg, var(--bg-tint) 0%, #ffffff 100%);
-  }
-  .hero-grid{
-    display:grid; grid-template-columns:1fr; gap:40px; align-items:center;
-  }
-  @media(min-width:900px){ .hero-grid{grid-template-columns:1.05fr 0.95fr; gap:56px;} }
-  .eyebrow-pill{
-    display:inline-flex; align-items:center; gap:8px;
-    background:#E6F6EF; color:var(--green-dark); font-weight:600; font-size:13.5px;
-    padding:7px 14px; border-radius:100px; margin-bottom:18px;
-    box-shadow:0 2px 10px -2px rgba(14,159,110,0.25);
-  }
-  .eyebrow-pill svg{width:14px; height:14px;}
-  h1{
-    font-size:clamp(30px, 5vw, 44px);
-    line-height:1.22; font-weight:700; color:var(--ink);
-    margin-bottom:18px; letter-spacing:-0.01em;
-  }
-  h1 .accent{color:var(--green);}
-  .hero p.lead{
-    font-size:18px; color:var(--body); max-width:520px; margin-bottom:30px;
-  }
-  .hero-actions{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:28px;}
-  .hero-actions .btn{padding:14px 26px; font-size:16px;}
-  .trust-row{display:flex; flex-wrap:wrap; gap:18px; color:var(--body); font-size:14px;}
-  .trust-row span{display:flex; align-items:center; gap:6px;}
-  .trust-row svg{width:16px; height:16px; color:var(--green);}
+  .hero{background:var(--tint); padding:64px 0 72px;}
+  .hero-grid{display:grid; grid-template-columns:1fr; gap:44px; align-items:center;}
+  @media(min-width:960px){ .hero-grid{grid-template-columns:1fr 1.1fr; gap:40px;} }
+  .pill{display:inline-flex; align-items:center; gap:8px; background:#fff; color:var(--blue-dark); font-weight:600; font-size:14px; padding:7px 14px; border-radius:100px; border:1px solid #cfdcfb; margin-bottom:18px;}
+  .pill svg{width:15px; height:15px; color:var(--green);}
+  .hero h1{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:clamp(42px,7vw,72px); line-height:1.05; letter-spacing:-.02em; color:var(--navy);}
+  .hero h1 span{color:var(--blue);}
+  .hero .tagline{margin-top:16px; font-size:clamp(21px,3vw,28px); font-weight:700; line-height:1.3; color:var(--ink);}
+  .hero .tagline b{color:var(--green);}
+  .hero .lead{margin-top:14px; font-size:18px; color:#334155; max-width:540px;}
+  .hero-actions{margin-top:26px; display:flex; flex-wrap:wrap; gap:12px;}
+  .hero-actions .btn{padding:10px 22px;}
+  .badges{margin-top:24px; list-style:none; display:flex; flex-wrap:wrap; gap:10px 22px; color:#334155; font-size:15px; font-weight:500;}
+  .badges li{display:flex; align-items:center; gap:8px;}
+  .badges svg{width:18px; height:18px; color:var(--blue);}
+  .hero-img img{width:100%; height:auto; max-width:700px; margin:0 auto; filter:drop-shadow(0 22px 30px rgba(11,27,77,.18));}
 
-  /* HERO VISUAL */
-  .hero-visual{
-    background:linear-gradient(155deg, var(--green) 0%, var(--green-dark) 100%);
-    border-radius:22px; padding:32px;
-    position:relative; overflow:hidden;
-    box-shadow:0 20px 40px -18px rgba(6,95,70,0.45);
-  }
-  .hero-visual::before{
-    content:''; position:absolute; inset:0;
-    background:radial-gradient(circle at 80% 0%, rgba(255,255,255,0.18), transparent 55%);
-  }
-  .mock-window{
-    background:#fff; border-radius:14px; overflow:hidden; position:relative; z-index:1;
-    box-shadow:0 12px 30px -10px rgba(0,0,0,0.35);
-  }
-  .mock-bar{
-    display:flex; align-items:center; gap:6px; padding:10px 14px; background:#F1F5F3; border-bottom:1px solid var(--line);
-  }
-  .mock-bar i{width:9px; height:9px; border-radius:50%; background:#D7E2DE; display:block;}
-  .mock-body{padding:18px;}
-  .mock-row{display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-bottom:1px dashed var(--line); font-size:13.5px;}
-  .mock-row:last-child{border-bottom:none;}
-  .mock-row .name{color:var(--ink); font-weight:600;}
-  .mock-row .amt{color:var(--green-dark); font-weight:700; font-family:'Manrope',sans-serif;}
-  .mock-stat-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px;}
-  .mock-stat{background:var(--bg-tint); border-radius:10px; padding:12px 14px;}
-  .mock-stat .label{font-size:12px; color:var(--body);}
-  .mock-stat .value{font-family:'Manrope',sans-serif; font-weight:800; font-size:19px; color:var(--green-deeper); margin-top:2px;}
-  .offline-chip{
-    position:absolute; top:20px; right:20px; z-index:2;
-    background:#fff; color:var(--green-dark); font-weight:700; font-size:12.5px;
-    padding:8px 12px; border-radius:100px; display:flex; align-items:center; gap:6px;
-    box-shadow:0 8px 16px -6px rgba(0,0,0,0.25);
-  }
-  .offline-chip svg{width:14px;height:14px;}
+  /* TRUST */
+  .trust{padding:34px 0; border-bottom:1px solid var(--line);}
+  .trust-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:22px;}
+  .trust-item{display:flex; align-items:center; gap:14px;}
+  .trust-ic{flex:none; width:52px; height:52px; border-radius:50%; background:#e3ecff; color:var(--blue); display:flex; align-items:center; justify-content:center;}
+  .trust-ic svg{width:26px; height:26px;}
+  .trust-item b{display:block; font-size:17px; color:var(--navy);}
+  .trust-item span{font-size:14px; color:var(--body);}
 
-  /* MOBILE HERO — extra depth so first screen doesn't feel flat */
-  @media(max-width:899px){
-    .hero{
-      position:relative; overflow:hidden;
-      padding:44px 0 36px;
-    }
-    .hero::before{
-      content:''; position:absolute; top:-70px; right:-90px;
-      width:240px; height:240px; border-radius:50%;
-      background:radial-gradient(circle, rgba(14,159,110,0.20), transparent 70%);
-      z-index:0; pointer-events:none;
-    }
-    .hero::after{
-      content:''; position:absolute; bottom:-40px; left:-70px;
-      width:180px; height:180px; border-radius:50%;
-      background:radial-gradient(circle, rgba(37,99,235,0.14), transparent 70%);
-      z-index:0; pointer-events:none;
-    }
-    .hero-grid{position:relative; z-index:1;}
-    .hero-visual{padding:22px; border-radius:20px; margin-top:4px;}
-    .mock-window{transform:scale(1); }
-    h1{margin-bottom:14px;}
-    .hero p.lead{margin-bottom:22px;}
-    .hero-actions{margin-bottom:22px;}
-  }
-
-  /* TRUST STRIP */
-  .strip{
-    background:var(--green-deeper); padding:22px 0;
-  }
-  .strip-grid{
-    display:grid; grid-template-columns:repeat(2,1fr); gap:18px; color:#DCF3E9;
-  }
-  @media(min-width:700px){ .strip-grid{grid-template-columns:repeat(4,1fr);} }
-  .strip-item{display:flex; align-items:center; gap:10px; font-size:14.5px; font-weight:600;}
-  .strip-item svg{width:20px; height:20px; flex-shrink:0; color:#7FE0BB;}
-
-  /* SECTION HEADS */
+  /* SECTIONS */
   .section{padding:76px 0;}
-  .section-head{max-width:640px; margin-bottom:44px;}
-  .section-head h2{font-size:clamp(24px,3.4vw,32px); font-weight:700; margin-bottom:12px;}
-  .section-head p{color:var(--body); font-size:16.5px;}
+  .sec-head{text-align:center; max-width:720px; margin:0 auto 40px;}
+  .sec-head h2{font-size:clamp(26px,4vw,38px); font-weight:700; color:var(--navy); line-height:1.25;}
+  .sec-head p{margin-top:10px; font-size:17px; color:var(--body);}
+  .eyebrow{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:14px; letter-spacing:.07em; text-transform:uppercase;}
+  .card{background:#fff; border:1px solid var(--line); border-radius:18px;}
+  .checks{list-style:none; display:grid; gap:12px;}
+  .checks li{display:flex; align-items:center; gap:12px; font-size:16.5px; color:#1e293b; font-weight:500;}
+  .tick{flex:none; width:24px; height:24px; border-radius:50%; background:var(--green); color:#fff; display:inline-flex; align-items:center; justify-content:center;}
+  .tick svg{width:13px; height:13px; stroke-width:3.2;}
 
-  /* FEATURES ZIGZAG */
-  .feature-row{
-    display:grid; grid-template-columns:1fr; gap:20px; align-items:center;
-    padding:28px 0; border-bottom:1px solid var(--line);
-  }
-  .feature-row:last-child{border-bottom:none;}
-  @media(min-width:760px){
-    .feature-row{grid-template-columns:64px 1fr; gap:24px;}
-  }
-  .feature-icon{
-    width:56px; height:56px; border-radius:14px;
-    display:flex; align-items:center; justify-content:center;
-    background:linear-gradient(160deg, #EFFAF5 0%, var(--bg-tint) 100%);
-    color:var(--green-dark); flex-shrink:0;
-    box-shadow:0 4px 12px -4px rgba(14,159,110,0.28), inset 0 0 0 1px rgba(14,159,110,0.08);
-  }
-  .feature-icon svg{width:28px; height:28px;}
-  .feature-row.alt .feature-icon{
-    background:linear-gradient(160deg, #EEF3FF 0%, #EAF1FE 100%); color:var(--blue);
-    box-shadow:0 4px 12px -4px rgba(37,99,235,0.28), inset 0 0 0 1px rgba(37,99,235,0.08);
-  }
-  .feature-text h3{font-size:19px; font-weight:700; margin-bottom:6px;}
-  .feature-text p{color:var(--body); font-size:15.5px; max-width:600px;}
+  /* PLATFORMS */
+  .plat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr)); gap:26px;}
+  .plat{padding:28px;}
+  .plat.win{background:#f5f8ff;}
+  .plat.and{background:#f4fbf6;}
+  .plat-top{display:flex; align-items:center; gap:14px;}
+  .plat-ic{width:48px; height:48px; border-radius:12px; color:#fff; display:flex; align-items:center; justify-content:center;}
+  .plat-ic svg{width:26px; height:26px;}
+  .win .plat-ic{background:var(--blue);} .and .plat-ic{background:var(--green);}
+  .plat h3{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:21px;}
+  .win h3{color:var(--blue);} .and h3{color:var(--green);}
+  .plat-top p{font-size:15px; color:var(--body);}
+  .plat ul{margin:22px 0 0; list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:11px 18px;}
+  .plat li{display:flex; align-items:center; gap:10px; font-size:15px; color:#1e293b;}
+  .plat li svg{width:18px; height:18px; stroke-width:2.6; flex:none;}
+  .win li svg{color:var(--blue);} .and li svg{color:var(--green);}
+  .plat .btn{margin-top:26px; width:100%;}
 
-  /* COMPARISON */
-  .compare-wrap{background:var(--bg-tint); border-radius:20px; padding:36px 28px;}
-  .compare-grid{display:grid; grid-template-columns:1fr; gap:0; border-radius:14px; overflow:hidden;}
-  @media(min-width:720px){ .compare-grid{grid-template-columns:1fr 1fr;} }
-  .compare-col{background:#fff; padding:28px 26px;}
-  .compare-col.win{background:var(--green-deeper); color:#fff;}
-  .compare-col h4{font-size:15px; text-transform:none; font-weight:700; margin-bottom:18px; opacity:.85;}
-  .compare-col ul{list-style:none;}
-  .compare-col li{display:flex; gap:10px; align-items:flex-start; font-size:15px; padding:9px 0;}
-  .compare-col li svg{width:18px; height:18px; flex-shrink:0; margin-top:2px;}
-  .compare-col:not(.win) li svg{color:#C4CDC9;}
-  .compare-col.win li svg{color:#7FE0BB;}
+  /* FEATURES */
+  .feat-wrap{background:var(--tint);}
+  .feat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:16px;}
+  .feat{padding:22px 14px; text-align:center; display:flex; flex-direction:column; align-items:center; gap:10px; transition:transform .15s ease, box-shadow .15s ease;}
+  .feat:hover{transform:translateY(-3px); box-shadow:0 14px 26px -18px rgba(11,27,77,.5);}
+  .feat-ic{width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center;}
+  .feat-ic svg{width:28px; height:28px;}
+  .feat b{font-size:16px; color:var(--navy); line-height:1.3;}
+  .feat span{font-size:14px; color:var(--body); line-height:1.45;}
+  .c-blue{background:#e3ecff; color:#1f4fe0;} .c-amber{background:#ffedd5; color:#b45309;} .c-green{background:#dcfce7; color:#15803d;} .c-rose{background:#ffe4e6; color:#be123c;} .c-violet{background:#ede9fe; color:#6d28d9;}
+
+  /* WINDOWS VIEWER */
+  .win-grid{display:grid; grid-template-columns:1fr; gap:44px; align-items:center;}
+  @media(min-width:1000px){ .win-grid{grid-template-columns:.8fr 1.4fr;} }
+  .win-copy h2{margin-top:8px; font-size:clamp(28px,4vw,38px); font-weight:700; line-height:1.25; color:var(--navy);}
+  .win-copy p{margin:14px 0 22px; font-size:17px; color:var(--body);}
+  .win-copy .btn{margin-top:26px;}
+  .ss-tabs{display:flex; gap:8px; margin-bottom:18px; overflow-x:auto; padding-bottom:4px; scrollbar-width:thin;}
+  .ss-tab{flex:none; border:1.5px solid var(--line); background:#fff; color:var(--ink); padding:8px 16px; min-height:40px; border-radius:100px; font-size:14px; font-weight:600; font-family:inherit; cursor:pointer; transition:background .15s ease, color .15s ease, border-color .15s ease;}
+  .ss-tab:hover{border-color:var(--blue);}
+  .ss-tab[aria-selected="true"]{background:var(--blue); border-color:var(--blue); color:#fff;}
+  .laptop{position:relative; padding-bottom:16px;}
+  .laptop-lid{background:#081c16; border-radius:16px 16px 0 0; padding:10px 10px 0; box-shadow:0 26px 50px -24px rgba(11,27,77,.55);}
+  .laptop-screen{background:#fff; border-radius:8px 8px 0 0; overflow:hidden; line-height:0;}
+  .laptop-screen img{width:100%; height:auto; display:block;}
+  .laptop-base{height:13px; background:#cbd5e1; border-radius:0 0 18px 18px; margin:0 -3%;}
+  .ss-cap{margin-top:10px; font-size:13.5px; color:var(--body); text-align:center;}
+
+  /* MOBILE */
+  .mob{background:var(--mint);}
+  .mob-head{display:grid; grid-template-columns:1fr; gap:24px; align-items:end; margin-bottom:42px;}
+  @media(min-width:900px){ .mob-head{grid-template-columns:1.1fr .9fr;} }
+  .mob-head h2{margin-top:8px; font-size:clamp(28px,4vw,38px); font-weight:700; line-height:1.25; color:var(--navy);}
+  .mob-head p{margin-top:12px; font-size:17px; color:var(--body); max-width:520px;}
+  .mob-points{list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:12px 18px;}
+  .mob-points li{display:flex; align-items:center; gap:10px; font-size:15.5px; font-weight:600; color:#1e293b;}
+  .phone-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:28px 16px; align-items:start;}
+  @media(min-width:760px){ .phone-grid{grid-template-columns:repeat(4,1fr); gap:24px;} }
+  .phone-item{display:flex; flex-direction:column; align-items:center; gap:12px;}
+  .phone{width:100%; max-width:230px; background:#081c16; border-radius:30px; padding:9px; box-shadow:0 22px 38px -20px rgba(11,27,77,.6);}
+  .phone-screen{background:#fff; border-radius:22px; overflow:hidden; aspect-ratio:9/19.5; position:relative; display:flex; align-items:center; justify-content:center;}
+  .phone-screen img{width:100%; height:100%; object-fit:cover; object-position:top;}
+  .ph-fallback{display:none; padding:16px; text-align:center; font-size:13px; color:var(--body); font-weight:600;}
+  .phone-screen.missing img{display:none;}
+  .phone-screen.missing .ph-fallback{display:block;}
+  .phone-item figcaption{font-size:15px; font-weight:700; color:var(--navy);}
+  .mob-cta{margin-top:36px; text-align:center;}
+
+  /* COMPARE */
+  .cmp-grid{display:grid; grid-template-columns:1fr; border-radius:18px; overflow:hidden; border:1px solid var(--line);}
+  @media(min-width:720px){ .cmp-grid{grid-template-columns:1fr 1fr;} }
+  .cmp-col{padding:30px 28px; background:#fff;}
+  .cmp-col.win{background:var(--navy); color:#fff;}
+  .cmp-col h4{font-size:16px; font-weight:700; margin-bottom:16px; opacity:.9;}
+  .cmp-col ul{list-style:none;}
+  .cmp-col li{display:flex; gap:10px; align-items:flex-start; font-size:15.5px; padding:9px 0;}
+  .cmp-col li svg{width:18px; height:18px; flex:none; margin-top:3px; stroke-width:2.6;}
+  .cmp-col:not(.win) li svg{color:#94a3b8;}
+  .cmp-col.win li svg{color:#86efac;}
+  .tbl-title{margin:56px 0 18px; text-align:center; font-size:22px; font-weight:700; color:var(--navy);}
+  .tbl-box{overflow-x:auto; border:1px solid var(--line); border-radius:18px;}
+  table.cmp{width:100%; border-collapse:collapse; min-width:440px; font-size:15.5px;}
+  table.cmp th{background:var(--navy); color:#fff; padding:14px 18px; text-align:center; font-weight:700;}
+  table.cmp th:first-child{text-align:left;}
+  table.cmp td{padding:12px 18px; border-top:1px solid var(--line); text-align:center; color:#1e293b;}
+  table.cmp td:first-child{text-align:left;}
+  table.cmp svg{width:20px; height:20px; color:var(--green); stroke-width:3; display:inline-block; vertical-align:middle;}
+  .dash{color:#64748b; font-weight:700;}
+
+  /* STEPS */
+  .steps-wrap{background:var(--tint);}
+  .steps{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px;}
+  .step{padding:24px; display:flex; flex-direction:column; gap:10px;}
+  .step-top{display:flex; align-items:center; gap:12px;}
+  .step-n{width:40px; height:40px; border-radius:50%; background:var(--blue); color:#fff; font-weight:800; display:flex; align-items:center; justify-content:center;}
+  .step-top svg{width:30px; height:30px; color:var(--blue);}
+  .step b{font-size:18px; color:var(--navy);}
+  .step span{font-size:15px; color:var(--body);}
 
   /* PRICING */
-  .price-panel{
-    background:linear-gradient(155deg, var(--green) 0%, var(--green-dark) 100%);
-    border-radius:24px; padding:44px 32px; color:#fff;
-    display:grid; grid-template-columns:1fr; gap:28px;
-    position:relative; overflow:hidden;
-  }
-  @media(min-width:800px){ .price-panel{grid-template-columns:1.1fr 0.9fr; align-items:center;} }
-  .price-panel::before{
-    content:''; position:absolute; inset:0;
-    background:radial-gradient(circle at 90% 100%, rgba(255,255,255,0.15), transparent 50%);
-  }
-  .price-left{position:relative; z-index:1;}
-  .price-left h3{font-size:26px; font-weight:700; margin-bottom:10px;}
-  .price-left p{color:#DCF3E9; font-size:15.5px; max-width:420px;}
-  .price-list{list-style:none; margin-top:20px; display:grid; gap:10px;}
-  .price-list li{display:flex; gap:10px; font-size:15px; align-items:flex-start;}
-  .price-list svg{width:18px; height:18px; color:#7FE0BB; flex-shrink:0; margin-top:2px;}
-  .price-right{
-    background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25);
-    border-radius:16px; padding:28px; text-align:center; position:relative; z-index:1;
-  }
-  .price-tag{font-family:'Manrope',sans-serif; font-weight:800; font-size:42px; line-height:1;}
-  .price-tag sub{font-family:'Hind Siliguri',sans-serif; font-weight:600; font-size:15px; opacity:.8;}
-  .price-note{font-size:13.5px; color:#DCF3E9; margin:8px 0 20px;}
-  .price-right .btn{width:100%;}
+  .price-panel{background:var(--navy); border-radius:24px; padding:44px 32px; color:#fff; display:grid; grid-template-columns:1fr; gap:30px;}
+  @media(min-width:860px){ .price-panel{grid-template-columns:1.1fr .9fr; align-items:center; padding:48px 44px;} }
+  .price-panel h3{font-size:28px; font-weight:700;}
+  .price-panel > div > p{margin-top:8px; color:#cbd5e1; font-size:16px; max-width:430px;}
+  .price-list{list-style:none; margin-top:22px; display:grid; gap:11px;}
+  .price-list li{display:flex; gap:10px; font-size:15.5px; align-items:flex-start; color:#e2e8f0;}
+  .price-list svg{width:18px; height:18px; color:#86efac; flex:none; margin-top:3px; stroke-width:2.8;}
+  .price-card{background:#fff; color:var(--ink); border-radius:18px; padding:30px 26px; text-align:center;}
+  .price-tag{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:46px; line-height:1.1; color:var(--navy);}
+  .price-tag sub{font-family:'Hind Siliguri',sans-serif; font-weight:600; font-size:16px; color:var(--body);}
+  .price-note{font-size:14px; color:var(--body); margin:8px 0 20px;}
+  .price-card .btn{width:100%;}
 
-  /* BUY / CONTACT */
-  .buy-grid{display:grid; grid-template-columns:1fr; gap:28px;}
-  @media(min-width:820px){ .buy-grid{grid-template-columns:1fr 1fr;} }
-  .buy-card{border:1px solid var(--line); border-radius:18px; padding:28px; box-shadow:0 6px 20px -14px rgba(15,42,34,0.35);}
-  .buy-card h3{font-size:19px; font-weight:700; margin-bottom:8px; display:flex; align-items:center; gap:10px;}
-  .buy-card h3 svg{width:22px; height:22px; color:var(--green);}
-  .buy-card p.desc{color:var(--body); font-size:14.5px; margin-bottom:18px;}
+  /* BUY */
+  .buy-wrap{background:var(--tint);}
+  .buy-grid{display:grid; grid-template-columns:1fr; gap:26px;}
+  @media(min-width:860px){ .buy-grid{grid-template-columns:1fr 1fr;} }
+  .buy-card{padding:28px;}
+  .buy-card h3{font-size:20px; font-weight:700; margin-bottom:8px; display:flex; align-items:center; gap:10px; color:var(--navy);}
+  .buy-card h3 svg{width:22px; height:22px; color:var(--blue);}
+  .buy-card p.desc{color:var(--body); font-size:15px; margin-bottom:18px;}
   .field{margin-bottom:14px;}
-  .field label{display:block; font-size:13.5px; font-weight:600; color:var(--ink); margin-bottom:6px;}
-  .field input, .field select{
-    width:100%; padding:11px 13px; border:1.5px solid var(--line); border-radius:9px;
-    font-size:14.5px; font-family:inherit; background:#fff; color:var(--ink);
-  }
-  .field input:focus, .field select:focus{outline:2px solid var(--green); outline-offset:1px; border-color:var(--green);}
-  .whatsapp-direct{
-    display:flex; flex-direction:column; align-items:flex-start; justify-content:center; height:100%;
-  }
-  .whatsapp-direct .big-icon{
-    width:52px; height:52px; border-radius:14px; background:#E6F6EF; color:var(--green-dark);
-    display:flex; align-items:center; justify-content:center; margin-bottom:16px;
-  }
-  .whatsapp-direct .big-icon svg{width:28px; height:28px;}
+  .field label{display:block; font-size:14px; font-weight:600; margin-bottom:6px;}
+  .field input{width:100%; min-height:46px; padding:11px 13px; border:1.5px solid #cbd5e1; border-radius:10px; font-size:15px; font-family:inherit; background:#fff; color:var(--ink);}
+  .field input:focus{outline:2px solid var(--blue); outline-offset:1px; border-color:var(--blue);}
+  .wa-card{display:flex; flex-direction:column; align-items:flex-start; justify-content:center;}
+  .wa-ic{width:54px; height:54px; border-radius:14px; background:#dcfce7; color:var(--green); display:flex; align-items:center; justify-content:center; margin-bottom:16px;}
+  .wa-ic svg{width:28px; height:28px;}
+
+  /* FAQ */
+  .faq{max-width:800px; margin:0 auto; display:flex; flex-direction:column; gap:12px;}
+  .faq details{padding:0 22px;}
+  .faq summary{list-style:none; cursor:pointer; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 0; min-height:48px; font-weight:600; font-size:17px; color:var(--navy);}
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary svg{width:22px; height:22px; color:var(--body); flex:none; transition:transform .2s ease; stroke-width:2.4;}
+  .faq details[open] summary svg{transform:rotate(180deg);}
+  .faq .ans{padding:0 0 20px; font-size:16px; color:var(--body); line-height:1.65;}
+  .faq .ans a{color:var(--blue-dark);}
+
+  /* DOWNLOAD */
+  .dl{background:var(--navy); color:#fff; text-align:center;}
+  .dl h2{font-size:clamp(28px,4.5vw,42px); font-weight:700;}
+  .dl > .wrap > p{margin-top:12px; font-size:18px; color:#cbd5e1;}
+  .dl-grid{margin:34px auto 0; max-width:880px; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr)); gap:18px; text-align:left;}
+  .dl-card{background:#fff; color:var(--ink); border-radius:18px; padding:26px; display:flex; flex-direction:column; gap:10px;}
+  .dl-card h3{font-size:20px; font-weight:700; display:flex; align-items:center; gap:10px; color:var(--navy);}
+  .dl-card h3 svg{width:26px; height:26px;}
+  .dl-card.win h3 svg{color:var(--blue);} .dl-card.and h3 svg{color:var(--green);}
+  .dl-card p{color:var(--body); font-size:15px; margin-bottom:8px;}
+  .dl-card .btn{width:100%; margin-top:auto;}
+  .dl-badges{margin-top:30px; list-style:none; display:flex; flex-wrap:wrap; gap:12px 34px; justify-content:center; color:#e2e8f0; font-size:15px; font-weight:500;}
 
   /* FOOTER */
-  footer{background:var(--green-deeper); color:#BFE3D4; padding:44px 0 26px;}
+  footer{background:#08133a; color:#cbd5e1; padding:46px 0 26px;}
   .footer-grid{display:flex; flex-wrap:wrap; justify-content:space-between; gap:28px; margin-bottom:28px;}
   .footer-brand{display:flex; align-items:center; gap:10px;}
-  .footer-brand span{font-family:'Manrope',sans-serif; font-weight:800; font-size:18px; color:#fff;}
-  .footer-links{display:flex; gap:22px; flex-wrap:wrap; font-size:14.5px;}
-  .footer-links a{text-decoration:none; color:#BFE3D4;}
-  .footer-links a:hover{color:#fff;}
-  .footer-cols{display:flex; flex-wrap:wrap; gap:36px;}
-  .footer-col h5{font-size:13px; font-weight:700; color:#fff; margin-bottom:12px; letter-spacing:.02em;}
-  .footer-col{display:flex; flex-direction:column; gap:9px; font-size:14px;}
-  .footer-col a{text-decoration:none; color:#BFE3D4;}
+  .footer-brand span{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:20px; color:#fff;}
+  .footer-cols{display:flex; flex-wrap:wrap; gap:40px;}
+  .footer-col{display:flex; flex-direction:column; gap:9px; font-size:14.5px;}
+  .footer-col h5{font-size:13px; font-weight:700; color:#fff; margin-bottom:6px; letter-spacing:.03em;}
+  .footer-col a{text-decoration:none; color:#cbd5e1;}
   .footer-col a:hover{color:#fff;}
-  .footer-bottom{border-top:1px solid rgba(255,255,255,0.12); padding-top:20px; font-size:13.5px; color:#7FAF9B; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between;}
-
-  /* APP SCREENSHOTS */
-  .ss-tabs{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px;}
-  .ss-tab{
-    border:1.5px solid var(--line); background:#fff; color:var(--ink);
-    padding:8px 16px; border-radius:100px; font-size:14px; font-weight:600;
-    font-family:inherit; cursor:pointer;
-    transition:background .15s ease, color .15s ease, border-color .15s ease;
-  }
-  .ss-tab:hover{border-color:var(--green);}
-  .ss-tab[aria-selected="true"]{background:var(--green); border-color:var(--green); color:#fff;}
-  .ss-frame{
-    background:linear-gradient(155deg, var(--green) 0%, var(--green-dark) 100%);
-    border-radius:20px; padding:10px 10px 0; overflow:hidden;
-    box-shadow:0 20px 40px -18px rgba(6,95,70,0.35);
-  }
-  .ss-frame-bar{display:flex; align-items:center; gap:6px; padding:6px 8px 14px;}
-  .ss-dot{width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,0.35); display:block;}
-  .ss-url{
-    margin-left:8px; background:rgba(255,255,255,0.14); color:rgba(255,255,255,0.85);
-    font-size:12.5px; font-weight:600; padding:5px 14px; border-radius:100px;
-    flex:1; max-width:280px; font-family:'Manrope',sans-serif;
-  }
-  .ss-frame-body{background:#fff; border-radius:14px 14px 0 0; overflow:hidden; line-height:0;}
-  .ss-frame-body img{width:100%; height:auto; display:block;}
+  .footer-bottom{border-top:1px solid #1e2c63; padding-top:20px; font-size:13.5px; color:#94a3b8; display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between;}
 
   .visually-hidden{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0);}
   :focus-visible{outline:2px solid var(--blue); outline-offset:2px;}
+  @media(max-width:700px){
+    .section{padding:52px 0;}
+    .hero{padding:44px 0 52px;}
+    .price-panel{padding:34px 22px;}
+    .btn{width:100%;}
+    .hero-actions .btn, .mob-cta .btn{width:100%;}
+    .nav .btn{width:auto;}
+  }
 </style>
 
 <!-- Google tag (gtag.js) -->
@@ -322,25 +281,55 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-D3QX5CYJ7J');
 </script>
-
-  
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.4 11h10.2L20 7H6.2M9 20a1 1 0 100-2 1 1 0 000 2zM17 20a1 1 0 100-2 1 1 0 000 2z"/></symbol>
+    <symbol id="i-pill" viewBox="0 0 24 24"><path d="M10.5 20.5a4.95 4.95 0 01-7-7l10-10a4.95 4.95 0 017 7zM8.5 8.5l7 7"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5zM3 8l9 5 9-5M12 13v8"/></symbol>
+    <symbol id="i-cal" viewBox="0 0 24 24"><path d="M5 5h14a1 1 0 011 1v13a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1zM4 10h16M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 10h4l3 3v3h-7zM6 19a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM17 19a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M9 11a3.5 3.5 0 100-7 3.5 3.5 0 000 7zM2 20c0-3.5 3-6 7-6s7 2.5 7 6M17 4.5a3.5 3.5 0 010 6.5M18 14c2.5.5 4 2.5 4 6"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6zM9 12l2 2 3-4"/></symbol>
+    <symbol id="i-db" viewBox="0 0 24 24"><path d="M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+    <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2M4 14h3v5H5a1 1 0 01-1-1zM20 14h-3v5h2a1 1 0 001-1z"/></symbol>
+    <symbol id="i-wifioff" viewBox="0 0 24 24"><path d="M2 9a15 15 0 0120 0M5 12.5a10 10 0 0114 0M8.5 16a5 5 0 017 0M12 19.5h.01"/></symbol>
+    <symbol id="i-android" viewBox="0 0 24 24"><path d="M6 10h12v8a1 1 0 01-1 1H7a1 1 0 01-1-1zM8 6l-1.5-2M16 6l1.5-2M6 10a6 6 0 0112 0M3 11v5M21 11v5"/></symbol>
+    <symbol id="i-win" viewBox="0 0 24 24"><path d="M3 5l8-1.2V11H3zM13 3.6l8-1.2V11h-8zM3 13h8v7.2L3 19zM13 13h8v8.6l-8-1.2z"/></symbol>
+    <symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M4 20h16"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10M16 5v4M8 15v4"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path d="M4 20l1.3-4A8 8 0 1112 20a8 8 0 01-3.8-1z"/></symbol>
+  </defs>
+</svg>
+
 <header>
-  <nav class="nav">
+  <nav class="nav" aria-label="Main">
     <a href="#top" class="nav-brand">
-      <img src="/assets/images/logo-mark.webp" alt="PharmaSeba" class="mark">
+      <img src="/assets/images/logo-mark.webp" alt="PharmaSeba">
       <span>PharmaSeba</span>
     </a>
-    <div class="nav-cta">
-      <a href="blog/index.html" class="nav-blog-link">ব্লগ</a>
-      <a href="#download" class="btn btn-outline btn-sm">ডাউনলোড</a>
-      <a href="#pricing" class="btn btn-primary btn-sm">কিনুন</a>
+    <div class="nav-links">
+      <a href="#features">ফিচার</a>
+      <a href="#windows">PC ভার্সন</a>
+      <a href="#mobile">মোবাইল অ্যাপ</a>
+      <a href="#pricing">দাম</a>
+      <a href="#download">ডাউনলোড</a>
+      <a href="blog/index.html">ব্লগ</a>
     </div>
+    <a href="https://wa.me/8801935291005?text=আমি%20PharmaSeba%20সম্পর্কে%20জানতে%20চাই" target="_blank" rel="noopener" class="btn btn-green btn-sm">
+      <svg width="20" height="20" class="ico" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp করুন
+    </a>
   </nav>
 </header>
 
@@ -350,173 +339,264 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <span class="eyebrow-pill">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 2v20M2 12h20"/></svg>
-          বাংলাদেশের ফার্মেসির জন্য তৈরি
-        </span>
-        <h1>আপনার ফার্মেসি,<br>এখন <span class="accent">ইন্টারনেট ছাড়াই</span><br>হাতের মুঠোয়</h1>
-        <p class="lead">PharmaSeba দিয়ে বিলিং, স্টক, বাকি/খাতা আর দৈনিক হিসাব রাখুন এক জায়গায়। নেট না থাকলেও অ্যাপ পুরোপুরি চলবে।</p>
+        <span class="pill"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>বাংলাদেশের ফার্মেসির জন্য তৈরি</span>
+        <h1>Pharma<span>Seba</span></h1>
+        <p class="tagline">আপনার ফার্মেসি, <b>ইন্টারনেট ছাড়াই</b> — PC ও Mobile-এ</p>
+        <p class="lead">বিলিং, স্টক, বাকি/খাতা আর দৈনিক হিসাব রাখুন এক জায়গায় — Windows PC বা Android মোবাইল থেকে। নেট না থাকলেও অ্যাপ পুরোপুরি চলবে।</p>
         <div class="hero-actions">
-          <a href="#download" class="btn btn-primary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13m0 0l-4.5-4.5M12 16l4.5-4.5"/><path d="M4 19h16"/></svg>
-            ডাউনলোড করুন
+          <a href="#download" class="btn btn-blue">
+            <svg width="26" height="26" class="ico ico-fill" aria-hidden="true"><use href="#i-win"/></svg>
+            <span class="btn-label">Windows ডাউনলোড<small>PC ভার্সন (অফলাইন)</small></span>
           </a>
-          <a href="#pricing" class="btn btn-outline">দাম দেখুন</a>
+          <a href="#download" class="btn btn-green">
+            <svg width="26" height="26" class="ico" aria-hidden="true"><use href="#i-android"/></svg>
+            <span class="btn-label">Android ডাউনলোড<small>মোবাইল অ্যাপ (অফলাইন)</small></span>
+          </a>
         </div>
-        <div class="trust-row">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>একবার কিনুন, সারাজীবন ব্যবহার</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>মাসিক কোনো চার্জ নেই</span>
-        </div>
+        <ul class="badges">
+          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>একবার কিনুন, সারাজীবন ব্যবহার</li>
+          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>মাসিক কোনো চার্জ নেই</li>
+          <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wifioff"/></svg>অফলাইনে চলে</li>
+        </ul>
       </div>
-
-      <div class="hero-visual">
-        <div class="offline-chip">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0119 12.55M5 12.55a10.94 10.94 0 015.17-2.39M10.71 5.05A16 16 0 0122.58 9M1.42 9a15.91 15.91 0 014.7-2.88M8.53 16.11a6 6 0 016.95 0M12 20h.01"/></svg>
-          অফলাইনে চলে
-        </div>
-        <div class="mock-window">
-          <div class="mock-bar"><i></i><i></i><i></i></div>
-          <div class="mock-body">
-            <div class="mock-row"><span class="name">প্যারাসিটামল ৫০০mg</span><span class="amt">৳ ৫</span></div>
-            <div class="mock-row"><span class="name">নাপা এক্সট্রা</span><span class="amt">৳ ১২</span></div>
-            <div class="mock-row"><span class="name">সেফ্রাডিন ৫০০mg</span><span class="amt">৳ ৪৫</span></div>
-            <div class="mock-stat-grid">
-              <div class="mock-stat"><div class="label">আজকের বিক্রি</div><div class="value">৳৮,৪০০</div></div>
-              <div class="mock-stat"><div class="label">মোট বাকি</div><div class="value">৳২,১৫০</div></div>
-            </div>
-          </div>
-        </div>
+      <div class="hero-img">
+        <img src="/assets/images/hero-pc-mobile.webp" width="1635" height="1186" alt="PharmaSeba ফার্মেসি ম্যানেজমেন্ট — PC ও মোবাইল অ্যাপের ড্যাশবোর্ড">
       </div>
     </div>
   </section>
 
-  <!-- TRUST STRIP -->
-  <div class="strip">
-    <div class="wrap strip-grid">
-      <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/></svg>দ্রুত POS বিলিং</div>
-      <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8V6a2 2 0 00-2-2H5a2 2 0 00-2 2v2m18 0v10a2 2 0 01-2 2H5a2 2 0 01-2-2V8m18 0H3m6 5h6"/></svg>স্টক ও মেয়াদ ট্র্যাকিং</div>
-      <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M17 9V7a4 4 0 00-8 0v2M5 9h14l1 11H4L5 9z"/></svg>বাকি/খাতা ব্যবস্থাপনা</div>
-      <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M8 17V10m5 7V6m5 11v-4"/></svg>দৈনিক রিপোর্ট</div>
+  <!-- TRUST -->
+  <div class="trust">
+    <div class="wrap trust-grid">
+      <div class="trust-item"><span class="trust-ic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-bolt"/></svg></span><div><b>দ্রুত ও সহজ ব্যবহার</b><span>User friendly interface</span></div></div>
+      <div class="trust-item"><span class="trust-ic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-db"/></svg></span><div><b>অফলাইন ডাটাবেস</b><span>Internet ছাড়াই চলবে</span></div></div>
+      <div class="trust-item"><span class="trust-ic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-shield"/></svg></span><div><b>নিরাপদ ও নির্ভরযোগ্য</b><span>আপনার ডাটা আপনার কাছেই</span></div></div>
+      <div class="trust-item"><span class="trust-ic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-headset"/></svg></span><div><b>বাংলাদেশের ফার্মেসির জন্য</b><span>স্থানীয় প্রয়োজনে তৈরি</span></div></div>
     </div>
   </div>
 
-  <!-- FEATURES -->
-  <section class="section" id="features">
+  <!-- PLATFORMS -->
+  <section class="section">
     <div class="wrap">
-      <div class="section-head">
-        <h2>একটা অ্যাপেই ফার্মেসির সব কাজ</h2>
-        <p>আলাদা খাতা, আলাদা হিসাব রাখার দিন শেষ। PharmaSeba আপনার কাউন্টার, স্টক আর হিসাব — সব একসাথে সামলায়।</p>
+      <div class="sec-head">
+        <h2>আপনার প্রয়োজন অনুযায়ী PharmaSeba বেছে নিন</h2>
+        <p>একই ধরনের পূর্ণাঙ্গ Pharmacy Management — আপনার পছন্দের ডিভাইসে।</p>
       </div>
-
-      <div class="feature-row">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5M7 14h4M7 17h7"/></svg>
+      <div class="plat-grid">
+        <div class="card plat win">
+          <div class="plat-top">
+            <span class="plat-ic"><svg class="ico ico-fill" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-win"/></svg></span>
+            <div><h3>PharmaSeba for Windows</h3><p>সম্পূর্ণ Pharmacy Management Software</p></div>
+          </div>
+          <ul>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>POS &amp; Billing</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Customer &amp; Due</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Medicine Management</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Reports</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Stock &amp; Inventory</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Staff Management</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Batch &amp; Expiry</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Print Invoice</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Purchase &amp; Supplier</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Offline Database</li>
+          </ul>
+          <a href="#download" class="btn btn-blue">Download Windows Version</a>
         </div>
-        <div class="feature-text">
-          <h3>পিওএস বিলিং</h3>
-          <p>ওষুধ খুঁজুন, বিল বানান, প্রিন্ট বা শেয়ার করুন — কয়েক সেকেন্ডে। কাউন্টারে লাইন লম্বা হবে না।</p>
-        </div>
-      </div>
-
-      <div class="feature-row alt">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8V6a2 2 0 00-2-2H5a2 2 0 00-2 2v2m18 0v10a2 2 0 01-2 2H5a2 2 0 01-2-2V8m18 0H3m6 5h6"/></svg>
-        </div>
-        <div class="feature-text">
-          <h3>স্টক ও ব্যাচ ট্র্যাকিং</h3>
-          <p>কোন ওষুধ কম আছে, কোনটার মেয়াদ শেষ হচ্ছে — আগেই জানতে পারবেন। FIFO পদ্ধতিতে ব্যাচ হিসাব রাখা হয়।</p>
-        </div>
-      </div>
-
-      <div class="feature-row">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M17 9V7a4 4 0 00-8 0v2M5 9h14l1 11H4L5 9z"/></svg>
-        </div>
-        <div class="feature-text">
-          <h3>বাকি / খাতা</h3>
-          <p>কে কত বাকি রেখেছে, কে কত শোধ করেছে — প্রতিটা হিসাব একদম পরিষ্কার থাকবে, ভুলে যাওয়ার ভয় নেই।</p>
-        </div>
-      </div>
-
-      <div class="feature-row alt">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M8 17V10m5 7V6m5 11v-4"/></svg>
-        </div>
-        <div class="feature-text">
-          <h3>বিক্রি ও লাভের রিপোর্ট</h3>
-          <p>দিন শেষে, সপ্তাহ শেষে বা মাস শেষে — কত বিক্রি হলো, কত লাভ হলো, এক ক্লিকেই দেখুন।</p>
-        </div>
-      </div>
-
-      <div class="feature-row">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17.5" cy="8.5" r="2.4"/><path d="M16 14.2c2.6.4 4.5 2.3 4.5 4.8"/></svg>
-        </div>
-        <div class="feature-text">
-          <h3>স্টাফ ও অনুমতি নিয়ন্ত্রণ</h3>
-          <p>মালিক আর কর্মচারীর জন্য আলাদা অ্যাক্সেস। কে কী দেখতে বা করতে পারবে, আপনি ঠিক করে দেবেন।</p>
+        <div class="card plat and">
+          <div class="plat-top">
+            <span class="plat-ic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-android"/></svg></span>
+            <div><h3>PharmaSeba Mobile (Android)</h3><p>সম্পূর্ণ Pharmacy Management App</p></div>
+          </div>
+          <ul>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>POS &amp; Billing</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Customer &amp; Due</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Medicine Management</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Reports</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Stock &amp; Inventory</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Staff Management</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Batch &amp; Expiry</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Offline Database</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Purchase &amp; Supplier</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Easy &amp; Fast</li>
+          </ul>
+          <a href="#download" class="btn btn-green">Download Android App</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SCREENSHOTS -->
-  <section class="section" id="screenshots" style="padding-top:0;">
+  <!-- FEATURES -->
+  <section class="section feat-wrap" id="features">
     <div class="wrap">
-      <div class="section-head">
-        <h2>আপনার ফার্মেসি এমনই দেখাবে</h2>
-        <p>ডেমো ডেটা দিয়ে চালানো আসল PharmaSeba অ্যাপের স্ক্রিন — কোনো মকআপ না, সত্যিকারের অ্যাপ।</p>
+      <div class="sec-head">
+        <h2>সকল প্রয়োজনীয় ফিচার একসাথে</h2>
+        <p>ফার্মেসি পরিচালনার জন্য যা যা দরকার, সবকিছুই আছে PharmaSeba-তে।</p>
+      </div>
+      <div class="feat-grid">
+        <div class="card feat"><span class="feat-ic c-blue"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cart"/></svg></span><b>Billing / POS</b><span>ওষুধ খুঁজুন, বিল বানান — কয়েক সেকেন্ডে</span></div>
+        <div class="card feat"><span class="feat-ic c-blue"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pill"/></svg></span><b>Medicine Management</b><span>২০,০০০+ ঔষধের ডাটাবেস</span></div>
+        <div class="card feat"><span class="feat-ic c-amber"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-box"/></svg></span><b>Stock Management</b><span>স্টক ও ইনভেন্টরি নিয়ন্ত্রণ</span></div>
+        <div class="card feat"><span class="feat-ic c-green"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cal"/></svg></span><b>Batch &amp; Expiry</b><span>ব্যাচ ও মেয়াদ পরিচালনা, FIFO হিসাব</span></div>
+        <div class="card feat"><span class="feat-ic c-rose"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-truck"/></svg></span><b>Purchase Management</b><span>ক্রয় ও সরবরাহ পরিচালনা</span></div>
+        <div class="card feat"><span class="feat-ic c-blue"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-users"/></svg></span><b>Supplier Management</b><span>সাপ্লায়ারের হিসাব</span></div>
+        <div class="card feat"><span class="feat-ic c-amber"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-users"/></svg></span><b>Customer &amp; Due</b><span>বাকি / খাতা — কে কত বাকি, পরিষ্কার হিসাব</span></div>
+        <div class="card feat"><span class="feat-ic c-violet"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chart"/></svg></span><b>Reports &amp; Analytics</b><span>বিক্রি ও লাভের রিপোর্ট এক ক্লিকে</span></div>
+        <div class="card feat"><span class="feat-ic c-blue"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-shield"/></svg></span><b>Staff Management</b><span>স্টাফ ও অনুমতি নিয়ন্ত্রণ</span></div>
+        <div class="card feat"><span class="feat-ic c-blue"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-db"/></svg></span><b>Offline Database</b><span>ইন্টারনেট ছাড়াই সম্পূর্ণ কাজ</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WINDOWS VERSION + SCREENSHOTS -->
+  <section class="section" id="windows">
+    <div class="wrap win-grid">
+      <div class="win-copy">
+        <div class="eyebrow" style="color:var(--blue);">PC Version</div>
+        <h2>বড় স্ক্রিনে আরও সুবিধাজনক কাজের অভিজ্ঞতা</h2>
+        <p>PharmaSeba Windows version আপনার ফার্মেসির দৈনন্দিন সব কাজ সহজ ও দ্রুত সম্পন্ন করতে সাহায্য করবে।</p>
+        <ul class="checks">
+          <li><span class="tick"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>Modern &amp; Clean Interface</li>
+          <li><span class="tick"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>Fast Billing (POS)</li>
+          <li><span class="tick"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>Complete Reports</li>
+          <li><span class="tick"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>Print Support</li>
+          <li><span class="tick"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>Keyboard Friendly</li>
+          <li><span class="tick"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>Works Offline</li>
+        </ul>
+        <a href="#download" class="btn btn-blue">ডাউনলোড করুন (Windows)</a>
       </div>
 
-      <div class="ss-tabs" role="tablist" id="ssTabs">
-        <button class="ss-tab" role="tab" aria-selected="true" data-src="/assets/images/screenshots/dashboard.webp" data-label="ড্যাশবোর্ড">ড্যাশবোর্ড</button>
-        <button class="ss-tab" role="tab" aria-selected="false" data-src="/assets/images/screenshots/pos_sale.webp" data-label="বিক্রি / পিওএস">বিক্রি / পিওএস</button>
-        <button class="ss-tab" role="tab" aria-selected="false" data-src="/assets/images/screenshots/inventory.webp" data-label="স্টক">স্টক</button>
-        <button class="ss-tab" role="tab" aria-selected="false" data-src="/assets/images/screenshots/medicine_catalog.webp" data-label="মেডিসিন ক্যাটালগ">মেডিসিন ক্যাটালগ</button>
-        <button class="ss-tab" role="tab" aria-selected="false" data-src="/assets/images/screenshots/due_khata.webp" data-label="বাকি / খাতা">বাকি / খাতা</button>
-        <button class="ss-tab" role="tab" aria-selected="false" data-src="/assets/images/screenshots/suppliers.webp" data-label="সাপ্লায়ার">সাপ্লায়ার</button>
-        <button class="ss-tab" role="tab" aria-selected="false" data-src="/assets/images/screenshots/reports.webp" data-label="রিপোর্ট">রিপোর্ট</button>
-        <button class="ss-tab" role="tab" aria-selected="false" data-src="/assets/images/screenshots/staff_rbac.webp" data-label="স্টাফ ও অনুমতি">স্টাফ ও অনুমতি</button>
+      <div id="screenshots">
+        <div class="ss-tabs" role="tablist" id="ssTabs" aria-label="অ্যাপ স্ক্রিনশট">
+          <button class="ss-tab" role="tab" aria-selected="true" data-src="/assets/images/screenshots/dashboard.webp" data-label="ড্যাশবোর্ড">ড্যাশবোর্ড</button>
+          <button class="ss-tab" role="tab" aria-selected="false" data-src="/assets/images/screenshots/pos_sale.webp" data-label="বিক্রি / পিওএস">বিক্রি / পিওএস</button>
+          <button class="ss-tab" role="tab" aria-selected="false" data-src="/assets/images/screenshots/inventory.webp" data-label="স্টক">স্টক</button>
+          <button class="ss-tab" role="tab" aria-selected="false" data-src="/assets/images/screenshots/medicine_catalog.webp" data-label="মেডিসিন ক্যাটালগ">মেডিসিন ক্যাটালগ</button>
+          <button class="ss-tab" role="tab" aria-selected="false" data-src="/assets/images/screenshots/due_khata.webp" data-label="বাকি / খাতা">বাকি / খাতা</button>
+          <button class="ss-tab" role="tab" aria-selected="false" data-src="/assets/images/screenshots/suppliers.webp" data-label="সাপ্লায়ার">সাপ্লায়ার</button>
+          <button class="ss-tab" role="tab" aria-selected="false" data-src="/assets/images/screenshots/reports.webp" data-label="রিপোর্ট">রিপোর্ট</button>
+          <button class="ss-tab" role="tab" aria-selected="false" data-src="/assets/images/screenshots/staff_rbac.webp" data-label="স্টাফ ও অনুমতি">স্টাফ ও অনুমতি</button>
+        </div>
+        <div class="laptop">
+          <div class="laptop-lid">
+            <div class="laptop-screen">
+              <img id="ssImg" src="/assets/images/screenshots/dashboard.webp" alt="PharmaSeba ড্যাশবোর্ড স্ক্রিনশট" width="960" height="720" loading="lazy">
+            </div>
+          </div>
+          <div class="laptop-base"></div>
+        </div>
+        <p class="ss-cap" id="ssUrl">PharmaSeba — ড্যাশবোর্ড · ডেমো ডেটা দিয়ে চালানো আসল অ্যাপের স্ক্রিন</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOBILE APP -->
+  <section class="section mob" id="mobile">
+    <div class="wrap">
+      <div class="mob-head">
+        <div>
+          <div class="eyebrow" style="color:var(--green);">Mobile App</div>
+          <h2>আপনার ফার্মেসি এখন আপনার হাতে</h2>
+          <p>PharmaSeba Android অ্যাপ দিয়ে যেকোনো সময়, যেকোনো জায়গা থেকে আপনার ফার্মেসি পরিচালনা করুন।</p>
+        </div>
+        <ul class="mob-points">
+          <li><span class="tick"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>পরিষ্কার ও সহজ ডিজাইন</li>
+          <li><span class="tick"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>সব ফিচার একই অ্যাপে</li>
+          <li><span class="tick"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>দ্রুত ও সহজ বিলিং</li>
+          <li><span class="tick"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></span>ইন্টারনেট ছাড়াই চলে</li>
+        </ul>
       </div>
 
-      <div class="ss-frame">
-        <div class="ss-frame-bar">
-          <span class="ss-dot"></span><span class="ss-dot"></span><span class="ss-dot"></span>
-          <span class="ss-url" id="ssUrl">PharmaSeba — ড্যাশবোর্ড</span>
-        </div>
-        <div class="ss-frame-body">
-          <img id="ssImg" src="/assets/images/screenshots/dashboard.webp" alt="PharmaSeba ড্যাশবোর্ড স্ক্রিনশট" width="960" height="655" loading="lazy">
-        </div>
+      <!-- Original mobile screenshots go in /assets/images/mobile/ (dashboard, pos, stock, reports .webp) -->
+      <div class="phone-grid">
+        <figure class="phone-item">
+          <div class="phone"><div class="phone-screen">
+            <img src="/assets/images/mobile/dashboard.webp" alt="PharmaSeba মোবাইল অ্যাপ ড্যাশবোর্ড" loading="lazy" onerror="this.parentNode.classList.add('missing')">
+            <div class="ph-fallback">ড্যাশবোর্ড</div>
+          </div></div>
+          <figcaption>ড্যাশবোর্ড</figcaption>
+        </figure>
+        <figure class="phone-item">
+          <div class="phone"><div class="phone-screen">
+            <img src="/assets/images/mobile/pos.webp" alt="PharmaSeba মোবাইল অ্যাপ পিওএস বিলিং" loading="lazy" onerror="this.parentNode.classList.add('missing')">
+            <div class="ph-fallback">পিওএস / বিলিং</div>
+          </div></div>
+          <figcaption>পিওএস / বিলিং</figcaption>
+        </figure>
+        <figure class="phone-item">
+          <div class="phone"><div class="phone-screen">
+            <img src="/assets/images/mobile/stock.webp" alt="PharmaSeba মোবাইল অ্যাপ স্টক ও মেয়াদ" loading="lazy" onerror="this.parentNode.classList.add('missing')">
+            <div class="ph-fallback">স্টক ও মেয়াদ</div>
+          </div></div>
+          <figcaption>স্টক ও মেয়াদ</figcaption>
+        </figure>
+        <figure class="phone-item">
+          <div class="phone"><div class="phone-screen">
+            <img src="/assets/images/mobile/reports.webp" alt="PharmaSeba মোবাইল অ্যাপ রিপোর্ট" loading="lazy" onerror="this.parentNode.classList.add('missing')">
+            <div class="ph-fallback">রিপোর্ট</div>
+          </div></div>
+          <figcaption>রিপোর্ট</figcaption>
+        </figure>
       </div>
+      <div class="mob-cta"><a href="#download" class="btn btn-green">ডাউনলোড করুন (Android)</a></div>
     </div>
   </section>
 
   <!-- COMPARISON -->
-  <section class="section" style="padding-top:0;">
+  <section class="section">
     <div class="wrap">
-      <div class="compare-wrap">
-        <div class="section-head" style="margin-bottom:28px;">
-          <h2>প্রতি মাসে টাকা কাটবে না</h2>
-          <p>বেশিরভাগ ফার্মেসি সফটওয়্যার চলে ইন্টারনেট দিয়ে আর মাসে মাসে বিল করে। PharmaSeba চলে অফলাইনে, দাম একবারই।</p>
+      <div class="sec-head">
+        <h2>প্রতি মাসে টাকা কাটবে না</h2>
+        <p>বেশিরভাগ ফার্মেসি সফটওয়্যার চলে ইন্টারনেট দিয়ে আর মাসে মাসে বিল করে। PharmaSeba চলে অফলাইনে, দাম একবারই।</p>
+      </div>
+      <div class="cmp-grid">
+        <div class="cmp-col">
+          <h4>সাধারণ ক্লাউড সফটওয়্যার</h4>
+          <ul>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg>প্রতি মাসে বিল দিতে হয়</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg>ইন্টারনেট ছাড়া চলে না</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-x"/></svg>নেট ধীরে হলে বিলিং আটকে যায়</li>
+          </ul>
         </div>
-        <div class="compare-grid">
-          <div class="compare-col">
-            <h4>সাধারণ ক্লাউড সফটওয়্যার</h4>
-            <ul>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>প্রতি মাসে বিল দিতে হয়</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>ইন্টারনেট ছাড়া চলে না</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>নেট ধীরে হলে বিলিং আটকে যায়</li>
-            </ul>
-          </div>
-          <div class="compare-col win">
-            <h4>PharmaSeba</h4>
-            <ul>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>একবার কিনুন, সারাজীবন ব্যবহার করুন</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>ইন্টারনেট ছাড়াই সম্পূর্ণ কাজ করে</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>কাউন্টারে বিলিং কখনো থামে না</li>
-            </ul>
-          </div>
+        <div class="cmp-col win">
+          <h4>PharmaSeba</h4>
+          <ul>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>একবার কিনুন, সারাজীবন ব্যবহার করুন</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>ইন্টারনেট ছাড়াই সম্পূর্ণ কাজ করে</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>কাউন্টারে বিলিং কখনো থামে না</li>
+          </ul>
         </div>
+      </div>
+
+      <h3 class="tbl-title">Feature Comparison — Windows ও Android</h3>
+      <div class="tbl-box">
+        <table class="cmp">
+          <thead><tr><th scope="col">Feature</th><th scope="col">Windows</th><th scope="col">Android</th></tr></thead>
+          <tbody>
+            <tr><td>Billing / POS</td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td></tr>
+            <tr><td>Medicine Management</td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td></tr>
+            <tr><td>Stock Management</td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td></tr>
+            <tr><td>Batch &amp; Expiry</td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td></tr>
+            <tr><td>Purchase &amp; Supplier</td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td></tr>
+            <tr><td>Customer &amp; Due</td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td></tr>
+            <tr><td>Reports &amp; Analytics</td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td></tr>
+            <tr><td>Staff Management</td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td></tr>
+            <tr><td>Offline Database</td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td></tr>
+            <tr><td>Print Support</td><td><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="আছে"><use href="#i-check"/></svg></td><td><span class="dash" aria-label="নেই">–</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section steps-wrap">
+    <div class="wrap">
+      <div class="sec-head"><h2>কিভাবে শুরু করবেন?</h2></div>
+      <div class="steps">
+        <div class="card step"><div class="step-top"><span class="step-n">১</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-dl"/></svg></div><b>App Download করুন</b><span>Windows বা Android version download করুন।</span></div>
+        <div class="card step"><div class="step-top"><span class="step-n">২</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-sliders"/></svg></div><b>Install &amp; Setup</b><span>সহজ setup process সম্পন্ন করুন, লাইসেন্স অ্যাক্টিভেট করুন।</span></div>
+        <div class="card step"><div class="step-top"><span class="step-n">৩</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-play"/></svg></div><b>শুরু করুন</b><span>Medicine, Stock ও অন্যান্য তথ্য যোগ করুন।</span></div>
+        <div class="card step"><div class="step-top"><span class="step-n">৪</span><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chart"/></svg></div><b>ফার্মেসি পরিচালনা করুন</b><span>Billing, Purchase, Reports সহ পুরো ব্যবসা চালান।</span></div>
       </div>
     </div>
   </section>
@@ -525,38 +605,35 @@
   <section class="section" id="pricing">
     <div class="wrap">
       <div class="price-panel">
-        <div class="price-left">
+        <div>
           <h3>একটাই দাম, ঝামেলা নেই</h3>
           <p>একবার কিনুন, নিজের ফার্মেসিতে ইনস্টল করুন — যতদিন খুশি ব্যবহার করুন।</p>
           <ul class="price-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>সম্পূর্ণ অ্যাপ — বিলিং, স্টক, বাকি/খাতা, রিপোর্ট</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>১টি কম্পিউটারে ব্যবহার</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>ইন্টারনেট ছাড়াই সম্পূর্ণ চলবে</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>১ বছর ফ্রি আপডেট ও সাপোর্ট</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>সম্পূর্ণ অ্যাপ — বিলিং, স্টক, বাকি/খাতা, রিপোর্ট</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>১টি কম্পিউটারে ব্যবহার</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>ইন্টারনেট ছাড়াই সম্পূর্ণ চলবে</li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>১ বছর ফ্রি আপডেট ও সাপোর্ট</li>
           </ul>
         </div>
-        <div class="price-right">
+        <div class="price-card">
           <div class="price-tag">৳৩,৫০০ <sub>/ একবার</sub></div>
           <div class="price-note">কোনো Hidden Charge নেই</div>
-          <a href="#buy" class="btn" style="background:#fff; color:var(--green-dark);">কিনতে চাই</a>
+          <a href="#buy" class="btn btn-blue">কিনতে চাই</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- BUY / CONTACT -->
-  <section class="section" id="buy">
+  <section class="section buy-wrap" id="buy">
     <div class="wrap">
-      <div class="section-head">
+      <div class="sec-head">
         <h2>কেনার জন্য যোগাযোগ করুন</h2>
         <p>ফর্ম পূরণ করুন অথবা সরাসরি WhatsApp-এ মেসেজ করুন — দুটোই সহজ।</p>
       </div>
       <div class="buy-grid">
-        <div class="buy-card">
-          <h3>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-            ফর্ম পূরণ করুন
-          </h3>
+        <div class="card buy-card">
+          <h3><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chat"/></svg>ফর্ম পূরণ করুন</h3>
           <p class="desc">তথ্য দিন, সাবমিট করলে সরাসরি WhatsApp খুলে যাবে প্রি-ফিল করা মেসেজ নিয়ে।</p>
           <form id="buyForm">
             <div class="field">
@@ -575,40 +652,63 @@
               <label for="district">জেলা</label>
               <input type="text" id="district" placeholder="যেমন: বগুড়া">
             </div>
-            <button type="submit" class="btn btn-primary" style="width:100%; margin-top:6px;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C10.4 9 10 8 9.8 7.6c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.7 0-3.3-.5-4.6-1.3l-.3-.2-3.4 1.1 1.1-3.3-.2-.3C3.7 14.9 3.2 13.5 3.2 12c0-4.8 3.9-8.7 8.7-8.7s8.7 3.9 8.7 8.7-3.8 8.7-8.6 8.7z"/></svg>
-              WhatsApp-এ পাঠান
+            <button type="submit" class="btn btn-blue" style="width:100%; margin-top:6px;">
+              <svg width="20" height="20" class="ico" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp-এ পাঠান
             </button>
           </form>
         </div>
 
-        <div class="buy-card whatsapp-direct">
-          <div class="big-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.1.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C10.4 9 10 8 9.8 7.6c-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.5 1.1 2.7c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.7 0-3.3-.5-4.6-1.3l-.3-.2-3.4 1.1 1.1-3.3-.2-.3C3.7 14.9 3.2 13.5 3.2 12c0-4.8 3.9-8.7 8.7-8.7s8.7 3.9 8.7 8.7-3.8 8.7-8.6 8.7z"/></svg>
-          </div>
+        <div class="card buy-card wa-card">
+          <div class="wa-ic"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-wa"/></svg></div>
           <h3 style="margin-bottom:8px;">সরাসরি মেসেজ করুন</h3>
           <p class="desc">ফর্ম পূরণ করার দরকার নেই — সরাসরি WhatsApp-এ চ্যাট শুরু করুন, প্রশ্ন থাকলে জিজ্ঞেস করুন।</p>
-          <a href="https://wa.me/8801935291005?text=আমি%20PharmaSeba%20সম্পর্কে%20জানতে%20চাই" target="_blank" rel="noopener" class="btn btn-blue">
-            WhatsApp-এ চ্যাট করুন
-          </a>
+          <a href="https://wa.me/8801935291005?text=আমি%20PharmaSeba%20সম্পর্কে%20জানতে%20চাই" target="_blank" rel="noopener" class="btn btn-green">WhatsApp-এ চ্যাট করুন</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DOWNLOAD -->
-  <section class="section" id="download" style="padding-top:0;">
+  <!-- FAQ -->
+  <section class="section" id="faq">
     <div class="wrap">
-      <div class="compare-wrap" style="background:var(--bg-tint); text-align:left; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px;">
-        <div>
-          <h2 style="font-size:22px; margin-bottom:6px;">অ্যাপ ডাউনলোড করুন</h2>
-          <p style="color:var(--body); font-size:15px;">Windows-এর জন্য ইনস্টলার — ডাউনলোড করে চালু করলেই লাইসেন্স অ্যাক্টিভেট করতে পারবেন।</p>
-        </div>
-        <a href="https://github.com/sanowarhp/pharmaseba-releases/releases/latest" class="btn btn-primary" style="white-space:nowrap;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13m0 0l-4.5-4.5M12 16l4.5-4.5"/><path d="M4 19h16"/></svg>
-          ডাউনলোড করুন
-        </a>
+      <div class="sec-head"><h2>প্রায় জিজ্ঞাসিত প্রশ্ন</h2></div>
+      <div class="faq">
+        <details class="card"><summary>PharmaSeba কি অফলাইনে কাজ করে?<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans">হ্যাঁ। বিলিং, স্টক, বাকি/খাতা, রিপোর্টসহ সব কাজ ইন্টারনেট ছাড়াই চলে, আর আপনার ডাটা আপনার ডিভাইসেই থাকে।</div></details>
+        <details class="card"><summary>Windows ও Android কি একই ফিচার দেয়?<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans">হ্যাঁ, মূল ফিচারগুলো দুই ভার্সনেই আছে। শুধু Print Support এখন Windows ভার্সনে রয়েছে।</div></details>
+        <details class="card"><summary>Medicine database কি সাথে দেয়া হয়?<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans">হ্যাঁ, ২০,০০০+ ঔষধের ডাটাবেস সফটওয়্যারের সাথেই থাকে।</div></details>
+        <details class="card"><summary>একবার কিনলে কি আজীবন ব্যবহার করা যাবে?<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans">হ্যাঁ। এটি একবার কেনার সফটওয়্যার, মাসিক কোনো চার্জ নেই। কেনার সাথে ১ বছর ফ্রি আপডেট ও সাপোর্ট থাকে।</div></details>
+        <details class="card"><summary>কোন ডিভাইসে ব্যবহার করতে পারবো?<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans">Windows PC এবং Android মোবাইলে ব্যবহার করা যাবে।</div></details>
+        <details class="card"><summary>রিফান্ড পলিসি কি?<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans">ভুল বা দুইবার পেমেন্ট হলে, কিংবা অসমর্থিত সিস্টেমের কারণে সফটওয়্যার না চললে ও সমাধান সম্ভব না হলে রিফান্ড বিবেচনা করা হয়। বিস্তারিত দেখুন <a href="refund-policy.html">Refund &amp; Support পলিসিতে</a>।</div></details>
+        <details class="card"><summary>টেকনিক্যাল সাপোর্ট আছে?<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chev"/></svg></summary><div class="ans">হ্যাঁ। ইনস্টলেশন ও ব্যবহারে সাহায্য পেতে WhatsApp-এ আমাদের সাথে যোগাযোগ করুন। প্রতিটি লাইসেন্সে ১ বছর ফ্রি সাপোর্ট অন্তর্ভুক্ত।</div></details>
       </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="section dl" id="download">
+    <div class="wrap">
+      <h2>এখনই PharmaSeba ডাউনলোড করুন</h2>
+      <p>আপনার ডিভাইস বেছে নিন — ডাউনলোড করে চালু করলেই লাইসেন্স অ্যাক্টিভেট করতে পারবেন।</p>
+      <div class="dl-grid">
+        <div class="dl-card win">
+          <h3><svg class="ico ico-fill" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-win"/></svg>Windows PC</h3>
+          <p>ইনস্টলার ডাউনলোড করে ক্লিক করে ইনস্টল করুন। ইন্টারনেট ছাড়াই চলবে।</p>
+          <a href="https://github.com/sanowarhp/pharmaseba-releases/releases/tag/v1.0.0" data-label="PharmaSeba Windows Download" class="btn btn-blue">
+            <svg width="20" height="20" class="ico" aria-hidden="true"><use href="#i-dl"/></svg>Windows ডাউনলোড (v1.0.0)
+          </a>
+        </div>
+        <div class="dl-card and">
+          <h3><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-android"/></svg>Android মোবাইল</h3>
+          <p>APK ডাউনলোড করে ফোনে ইনস্টল করুন। অফলাইনেই কাজ করে।</p>
+          <!-- TODO: APK upload howar por ei href ta direct APK link / notun release tag diye replace korbe -->
+          <a href="https://github.com/sanowarhp/pharmaseba-releases/releases/latest" data-label="PharmaSeba Android Download" class="btn btn-green">
+            <svg width="20" height="20" class="ico" aria-hidden="true"><use href="#i-dl"/></svg>Android ডাউনলোড (APK)
+          </a>
+        </div>
+      </div>
+      <ul class="dl-badges">
+        <li>১০০% অফলাইন</li><li>একবার কেনা, আজীবন ব্যবহার</li><li>বাংলাদেশের ফার্মেসির জন্য</li>
+      </ul>
     </div>
   </section>
 
@@ -626,6 +726,7 @@
           <h5>প্রোডাক্ট</h5>
           <a href="#features">ফিচার</a>
           <a href="#pricing">দাম</a>
+          <a href="#mobile">মোবাইল অ্যাপ</a>
           <a href="#download">ডাউনলোড</a>
           <a href="blog/index.html">ব্লগ</a>
         </div>
@@ -673,7 +774,7 @@
   (function(){
     var tabs = document.querySelectorAll('#ssTabs .ss-tab');
     var img = document.getElementById('ssImg');
-    var url = document.getElementById('ssUrl');
+    var cap = document.getElementById('ssUrl');
     tabs.forEach(function(tab){
       tab.addEventListener('click', function(){
         tabs.forEach(function(t){ t.setAttribute('aria-selected','false'); });
@@ -681,129 +782,58 @@
         var label = tab.getAttribute('data-label');
         img.src = tab.getAttribute('data-src');
         img.alt = 'PharmaSeba ' + label + ' স্ক্রিনশট';
-        url.textContent = 'PharmaSeba — ' + label;
+        cap.textContent = 'PharmaSeba — ' + label + ' · ডেমো ডেটা দিয়ে চালানো আসল অ্যাপের স্ক্রিন';
       });
     });
   })();
 </script>
 
-<!-- ==========================================
-     PharmaSeba - Google Analytics 4
-     + Custom Event Tracking
-     ========================================== -->
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3QX5CYJ7J"></script>
-
 <script>
-  // ==========================================
-  // GA4 INITIALIZATION
-  // ==========================================
-
-  window.dataLayer = window.dataLayer || [];
-
-  function gtag() {
-    dataLayer.push(arguments);
-  }
-
-  gtag('js', new Date());
-
-  gtag('config', 'G-D3QX5CYJ7J');
-
-
-  // ==========================================
-  // CUSTOM EVENT TRACKING
-  // ==========================================
-
+  // GA4 custom events (gtag is initialised in <head>)
   document.addEventListener('DOMContentLoaded', function () {
 
-
-    // ------------------------------------------
-    // DOWNLOAD BUTTON
-    // ------------------------------------------
-
-    document.querySelectorAll(
-      'a[href*="github.com/sanowarhp/pharmaseba-releases"]'
-    ).forEach(function (link) {
-
+    document.querySelectorAll('a[href*="github.com/sanowarhp/pharmaseba-releases/releases"]').forEach(function (link) {
       link.addEventListener('click', function () {
-
         gtag('event', 'download_click', {
           event_category: 'engagement',
-          event_label: 'PharmaSeba Windows Download',
+          event_label: this.getAttribute('data-label') || 'PharmaSeba Download',
           link_url: this.href,
           transport_type: 'beacon'
         });
-
       });
-
     });
 
-
-    // ------------------------------------------
-    // WHATSAPP BUTTONS
-    // ------------------------------------------
-
-    document.querySelectorAll(
-      'a[href*="wa.me"]'
-    ).forEach(function (link) {
-
+    document.querySelectorAll('a[href*="wa.me"]').forEach(function (link) {
       link.addEventListener('click', function () {
-
         gtag('event', 'whatsapp_click', {
           event_category: 'engagement',
           event_label: 'PharmaSeba WhatsApp',
           link_url: this.href,
           transport_type: 'beacon'
         });
-
       });
-
     });
 
-
-    // ------------------------------------------
-    // BUY BUTTONS
-    // ------------------------------------------
-
-    document.querySelectorAll(
-      'a[href="#buy"]'
-    ).forEach(function (link) {
-
+    document.querySelectorAll('a[href="#buy"]').forEach(function (link) {
       link.addEventListener('click', function () {
-
         gtag('event', 'buy_click', {
           event_category: 'conversion',
           event_label: 'Buy / Contact CTA'
         });
-
       });
-
     });
 
-
-    // ------------------------------------------
-    // PURCHASE / CONTACT FORM
-    // ------------------------------------------
-
     var buyForm = document.getElementById('buyForm');
-
     if (buyForm) {
-
       buyForm.addEventListener('submit', function () {
-
         gtag('event', 'generate_lead', {
           event_category: 'conversion',
           event_label: 'PharmaSeba Purchase Inquiry'
         });
-
       });
-
     }
-
   });
-
 </script>
-  
+
 </body>
 </html>
